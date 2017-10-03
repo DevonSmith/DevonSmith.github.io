@@ -11,7 +11,7 @@ This portfolio is a collection of some of the software that I have developed in 
 
 
 ### Code Repository
-All of the code seen here is for CS460 and is hosted in the following repository: [https://bitbucket.org/devonsmith7696/cs460-project-repository]{https://bitbucket.org/devonsmith7696/cs460-project-repository)
+All of the code seen here is for CS460 and is hosted in the following repository: [https://bitbucket.org/devonsmith7696/cs460-project-repository](https://bitbucket.org/devonsmith7696/cs460-project-repository)
 
 ### Software Engineering I (CS 460): Homework
 
