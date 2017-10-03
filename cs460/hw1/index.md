@@ -81,6 +81,55 @@ There of course were some things about the code that I wanted to change, I thoug
 
 #### Creating Code Content
 
+The assignment description for this project said that we could make a page about anything, the content did not matter but important component was the code. So for this assignment I created two pages. The first page contains information about the project requirements and describes for the instructor where the requirements were met.The second page contains a description of the Inktober event and how to participate.
+
+###### The Home Page
+
+###### The Inktober Page
+
+For this page I included the official Inktober logo and aligned it using the Bootstrap grid. I created a row using the bootstrap CSS and created a single column that contained the logo centered on the page.
+
+```html
+<div class="row">
+    <div class="col-sm-12">
+        <p class="text-center">
+            <img src="http://media.virbcdn.com/cdn_images/resize_1024x1365/c4/78315df6f0f901f4-weblogo.png" 
+            alt="Inktober!">
+        </p>
+    </div>
+</div>
+```
+
+Below the header image I wanted to create a hero text that would explain what Inktober was before the reader jumped into the page. To do this I needed to create a space for my hero text. So I used the Bootstrap grid to create a space for the hero text, and spcified a new class for this text elemement.
+
+```html
+<div class="row">
+    <div class="col-sm-12">
+        <p class="text-center hero-text">
+            <strong>Inktober</strong> is an annual event that started in 2009. Every 
+            year artists all over the world participate in this event and create 
+            one ink drawing a day for the entire month.
+        </p>
+    </div>
+</div>
+```
+
+I then went to Google Fonts and found a webfont that I wanted to use in the hero text and added it to my stylesheet
+
+```css
+/* google fond used for hero text */
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+```
+
+I then created the class for this hero text introduction. I used the webfont I chose and set the size relative to the root em size.
+
+```css
+.hero-text{
+    font-family: 'Arvo', Georgia, "Times New Roman", serif;
+    font-size: 3rem;
+}
+```
+
 #### Meeting the Class Requirements
 
 
