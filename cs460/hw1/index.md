@@ -83,9 +83,20 @@ There of course were some things about the code that I wanted to change, I thoug
 
 The assignment description for this project said that we could make a page about anything, the content did not matter but important component was the code. So for this assignment I created two pages. The first page contains information about the project requirements and describes for the instructor where the requirements were met.The second page contains a description of the Inktober event and how to participate.
 
-###### The Home Page
+*The Home Page*
 
-###### The Inktober Page
+For this page I used a single row to meet the class requirements for a single column page layout. I didn't use the row and column Bootstrap classes for this page as they were not required. Instead I opted to just use a single main page container.
+
+```html
+<!-- main body container -->
+<div class="container">
+    <div class="main-page-content">
+    <!-- content is added here -->
+    </div>
+</div>
+```
+
+*The Inktober Page*
 
 For this page I included the official Inktober logo and aligned it using the Bootstrap grid. I created a row using the bootstrap CSS and created a single column that contained the logo centered on the page.
 
