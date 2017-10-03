@@ -5,7 +5,8 @@ layout: default
 
 ## Devon Smith's Portfolio
 
-This portfolio is a collection of some of the software that I have developed in my free time and while I am a student studying Computer Science at Western Oregon University.
+This portfolio is a collection of some of the software that I have developed in my free time and while I am a student studying Computer Science at [Western Oregon University](https://www.wou.edu). Specifically this portfolio focuses on the class content
+for the Software Engineering series (CS460, CS461, CS462).
 
 ### About Me
 I am a Computer Science student at [Western Oregon University](https://www.wou.edu).

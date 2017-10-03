@@ -50,6 +50,39 @@ git push origin master
 
 From there I added references to the Bootstrap CDN. I initially started with the "new hotness" Bootstrap 4 but found that the documentation was lacking and it had some significant differences from Bootstrap 3 so I went back to the Bootstrap 3 CDN and used [https://www.w3schools.com/bootstrap](https://www.w3schools.com/bootstrap) to help me with some of the more complex concepts with Bootstrap. It was a different process using this pre-existing framework because I don't tend to work that way, I usually create everything from scratch.
 
+#### Using Bootstrap
+
+Bootstrap provides you with many different kinds of classes that can be used for everything from tables to navigation. I used the
+default Bootstrap dark theme for my navigation bar. In this case the navbar-inverse class.
+
+```html
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand">Devon Smith</span>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="columns.html">Inktober</a></li>
+        </ul>
+    </div>
+</nav>
+```
+There of course were some things about the code that I wanted to change, I thought the navigation was a bit too tall and the color was too light so I adjusted these using a custom CSS file.
+
+```css
+.navbar {
+    border-radius: 0;
+    border: none;
+    background-color: #080808;
+    margin-top: -2rem;
+}
+```
+
+#### Creating Code Content
+
+#### Meeting the Class Requirements
+
 
 ### Step 3: Creating a page using Github Pages
 Github Pages uses Jekyll to create a web page or blog using Markdown. I was already familiar with markdown from Open Source Software Development and some contribution I did to Wikis. So I created the beginnings of my files in a directory and then created and empty repo on Github. From there I added an index.html file as a filler file. I then just created an index.md file and began creating the directory structure for this portfolio.
