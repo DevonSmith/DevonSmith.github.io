@@ -83,7 +83,7 @@ There of course were some things about the code that I wanted to change, I thoug
 
 The assignment description for this project said that we could make a page about anything, the content did not matter but important component was the code. So for this assignment I created two pages. The first page contains information about the project requirements and describes for the instructor where the requirements were met.The second page contains a description of the Inktober event and how to participate.
 
-*The Home Page*
+**The Home Page**
 
 For this page I used a single row to meet the class requirements for a single column page layout. I didn't use the row and column Bootstrap classes for this page as they were not required. Instead I opted to just use a single main page container.
 
@@ -96,7 +96,7 @@ For this page I used a single row to meet the class requirements for a single co
 </div>
 ```
 
-*The Inktober Page*
+**The Inktober Page**
 
 For this page I included the official Inktober logo and aligned it using the Bootstrap grid. I created a row using the bootstrap CSS and created a single column that contained the logo centered on the page.
 
@@ -125,7 +125,7 @@ Below the header image I wanted to create a hero text that would explain what In
 </div>
 ```
 
-I then went to Google Fonts and found a webfont that I wanted to use in the hero text and added it to my stylesheet
+I then went to Google Fonts and found a webfont that I wanted to use in the hero text and added it to my stylesheet.
 
 ```css
 /* google fond used for hero text */
