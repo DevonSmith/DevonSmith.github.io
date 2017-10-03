@@ -51,7 +51,7 @@ git push origin master
 From there I added references to the Bootstrap CDN. I initially started with the "new hotness" Bootstrap 4 but found that the documentation was lacking and it had some significant differences from Bootstrap 3 so I went back to the Bootstrap 3 CDN and used [https://www.w3schools.com/bootstrap](https://www.w3schools.com/bootstrap) to help me with some of the more complex concepts with Bootstrap. It was a different process using this pre-existing framework because I don't tend to work that way, I usually create everything from scratch.
 
 
-## Step 3: Creating a page using Github Pages
+### Step 3: Creating a page using Github Pages
 Github Pages uses Jekyll to create a web page or blog using Markdown. I was already familiar with markdown from Open Source Software Development and some contribution I did to Wikis. So I created the beginnings of my files in a directory and then created and empty repo on Github. From there I added an index.html file as a filler file. I then just created an index.md file and began creating the directory structure for this portfolio.
 
 ```
