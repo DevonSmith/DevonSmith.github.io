@@ -62,7 +62,7 @@ mkdir cs460
 mkdir cs460/hw1
 touch cs360/hw1/index.md
 git init
-git remote add origin https://devonsmith.github.com/devonsmith.github.io.git
+git remote add origin https://github.com/DevonSmith/DevonSmith.github.io.git
 git add *
 git commit -m "Initial commit"
 git push origin master
