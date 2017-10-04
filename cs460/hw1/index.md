@@ -160,53 +160,53 @@ I added a carousel to the page and added some images from this years inktober. T
 
 ```html
  <!-- Carousel -->
-                <div id="Carousel" class="carousel slide" 
-                    data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                  <li data-target="#Carousel" data-slide-to="0" 
-                      class="active"></li>
-                  <li data-target="#Carousel" data-slide-to="1"></li>
-                  <li data-target="#Carousel" data-slide-to="2"></li>
-                </ol>
+<div id="Carousel" class="carousel slide" 
+    data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#Carousel" data-slide-to="0" 
+            class="active"></li>
+        <li data-target="#Carousel" data-slide-to="1"></li>
+        <li data-target="#Carousel" data-slide-to="2"></li>
+    </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <!-- first slider item -->
-                    <div class="item active">
-                        <a href="http://.../AlectorFencer/status/914892466096140288">
-                            <img src="img/alectorfencer.jpg" 
-                                alt="@AlectorFencer" style="width:100%;">
-                        </a>
-                    </div>
-                    <!-- second slider item -->
-                    <div class="item">
-                        <a href="http://.../heyshannuckles/status/915041488882384896">
-                            <img src="img/heyshannuckles.jpg" 
-                                alt="@heyshannuckles" style="width:100%;">
-                        </a>
-                    </div>
-                    <!-- third slider item -->
-                    <div class="item">
-                        <a href="https://.../PerroneLia/status/914934278227582976">
-                            <img src="img/PerroneLia.jpg" 
-                                alt="@PerroneLia" style="width:100%;">
-                        </a>
-                    </div>
-                </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <!-- first slider item -->
+        <div class="item active">
+            <a href="http://.../AlectorFencer/status/914892466096140288">
+                <img src="img/alectorfencer.jpg" 
+                    alt="@AlectorFencer" style="width:100%;">
+            </a>
+        </div>
+        <!-- second slider item -->
+        <div class="item">
+            <a href="http://.../heyshannuckles/status/915041488882384896">
+                <img src="img/heyshannuckles.jpg" 
+                    alt="@heyshannuckles" style="width:100%;">
+            </a>
+        </div>
+        <!-- third slider item -->
+        <div class="item">
+            <a href="https://.../PerroneLia/status/914934278227582976">
+                <img src="img/PerroneLia.jpg" 
+                    alt="@PerroneLia" style="width:100%;">
+            </a>
+        </div>
+    </div>
 
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#Carousel" data-slide="prev">
-                  <span class="glyphicon glyphicon-chevron-left"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#Carousel" data-slide="next">
-                  <span class="glyphicon glyphicon-chevron-right"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-            </div>
-                <!-- Carousel end -->
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#Carousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#Carousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    </div>
+</div>
+<!-- Carousel end -->
 
 ```
 
@@ -220,28 +220,22 @@ There was no spacing below the carousel which caused it to be right against the 
 
 #### Meeting the Class Requirements
 
-You must use Bootstrap for all pages and demonstrate a single column layout and tow or more column formatting.
-
+You must use Bootstrap for all pages and demonstrate a single column layout and tow or more column formatting.<br>
 *I used mixed formatting but for the most part used a two column layout in the columns.html file.*
 
-You must have a separate CSS file in which you write some of your own classes and that you use somewhere.
-
+You must have a separate CSS file in which you write some of your own classes and that you use somewhere.<br>
 *I created a custom.css file in which I created the .hero-text class, .container, and .main-page-container classes.*
 
-You'll need a navigation bar or menu that contains links to your pages
-
+You'll need a navigation bar or menu that contains links to your pages<br>
 *I created a navigation bar using Bootstrap that contains links to all of my pages.*
 
-You must have one of each kind of list
-
+You must have one of each kind of list<br>
 *The navbar contains an unorderd list for the links, the Assignment requirements contains an ordered list and the implementation section on the main page includes a description list that defines how each element was used.*
 
-All main elements need to be styles consistently
-
+All main elements need to be styles consistently<br>
 *I used Bootstrap for most of the styling but did create some custom classes that are used in both of the pages.*
 
-You must write all code yourself, no Dreamweaver.
-
+You must write all code yourself, no Dreamweaver.<br>
 *I used Notepad++ for coding and VSCode with a plugin for spell checking.*
 
 
@@ -263,6 +257,35 @@ git push origin master
 ```
 
 I then created the files using Markdown. I changed the theme using the settings in Github which then autogenerated a README.md file. Which I had to sync back down and then I could push my new files up.
+
+#### Markdown
+Here is a brief rundown of the functions in markdown. These are the majority of the elements I used on a regular basis. There are more than I have listed here but this will get anyone started with markdown.
+
+```markdown
+# H1
+## H2
+##### H4
+
+* bullet 1
+* bullet 2
+* bullet 3
+
+1. item 1
+2. item 2
+3. item 3
+
+> blockquote
+>> nested blockquote level
+
+*Italic*
+**strong**
+
+Horizonal rule
+*****
+
+triple backtick (`) for code blocks.
+
+```
 
 
 
