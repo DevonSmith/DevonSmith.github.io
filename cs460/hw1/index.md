@@ -52,30 +52,38 @@ From there I added references to the Bootstrap CDN. I initially started with the
 
 #### Using Bootstrap
 
-Bootstrap provides you with many different kinds of classes that can be used for everything from tables to navigation. I used the
-default Bootstrap dark theme for my navigation bar. In this case the navbar-inverse class.
+Bootstrap provides you with many different kinds of classes that can be used for everything from tables to navigation. I used the default Bootstrap dark theme for my navigation bar. In this case the navbar-inverse class.
 
 ```html
+<!-- Navigation section -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <span class="navbar-brand">Devon Smith</span>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">Devon Smith</a>
         </div>
+        <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="columns.html">Inktober</a></li>
+            <li><a href="columns.html">Inktober</a></li>
         </ul>
+        </div>
     </div>
-</nav>
+    </nav>
+<!-- end of the navigation section -->
 ```
-There of course were some things about the code that I wanted to change, I thought the navigation was a bit too tall and the color was too light so I adjusted these using a custom CSS file.
+
+There were, of course, some things about the code that I wanted to change. I color was too light and it had a rounded border so I adjusted these using a custom CSS file. 
 
 ```css
 .navbar {
     border-radius: 0;
     border: none;
     background-color: #080808;
-    margin-top: -2rem;
 }
 ```
 
@@ -85,16 +93,23 @@ The assignment description for this project said that we could make a page about
 
 **The Home Page**
 
-For this page I used a single row to meet the class requirements for a single column page layout. I didn't use the row and column Bootstrap classes for this page as they were not required. Instead I opted to just use a single main page container.
+For this page I used a single row to meet the class requirements for a single column page layout. I created a row and a single column using the Bootstrap grid.
 
 ```html
 <!-- main body container -->
 <div class="container">
     <div class="main-page-content">
-    <!-- content is added here -->
+        <div class="row">
+            <div class="col-sm-12">
+            <!-- content is added here -->
+            </div>
+        </div>
     </div>
 </div>
 ```
+
+The homepage is a description of the assignment and a description list of each of the project requirements and how they were met in the code. Since this project was about code I used the first page to talk about the creation of the project.
+There is an ordered list which I copied the text directly from the assignment page, and a description list that details how I met the requirements for the assignment.
 
 **The Inktober Page**
 
@@ -104,7 +119,7 @@ For this page I included the official Inktober logo and aligned it using the Boo
 <div class="row">
     <div class="col-sm-12">
         <p class="text-center">
-            <img src="http://media.virbcdn.com/cdn_images/resize_1024x1365/c4/78315df6f0f901f4-weblogo.png" 
+            <img src="http://..../78315df6f0f901f4-weblogo.png" 
             alt="Inktober!">
         </p>
     </div>
@@ -141,7 +156,93 @@ I then created the class for this hero text introduction. I used the webfont I c
 }
 ```
 
+I added a carousel to the page and added some images from this years inktober. These images all link back to the original twitter posts that contained the images.
+
+```html
+ <!-- Carousel -->
+                <div id="Carousel" class="carousel slide" 
+                    data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#Carousel" data-slide-to="0" 
+                      class="active"></li>
+                  <li data-target="#Carousel" data-slide-to="1"></li>
+                  <li data-target="#Carousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <!-- first slider item -->
+                    <div class="item active">
+                        <a href="http://.../AlectorFencer/status/914892466096140288">
+                            <img src="img/alectorfencer.jpg" 
+                                alt="@AlectorFencer" style="width:100%;">
+                        </a>
+                    </div>
+                    <!-- second slider item -->
+                    <div class="item">
+                        <a href="http://.../heyshannuckles/status/915041488882384896">
+                            <img src="img/heyshannuckles.jpg" 
+                                alt="@heyshannuckles" style="width:100%;">
+                        </a>
+                    </div>
+                    <!-- third slider item -->
+                    <div class="item">
+                        <a href="https://.../PerroneLia/status/914934278227582976">
+                            <img src="img/PerroneLia.jpg" 
+                                alt="@PerroneLia" style="width:100%;">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#Carousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#Carousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+                <!-- Carousel end -->
+
+```
+
+There was no spacing below the carousel which caused it to be right against the next row in the page. I added some spacing on the bottom of the carousel using CSS.
+
+```css
+.carousel {
+    margin-bottom: 3rem;
+}
+```
+
 #### Meeting the Class Requirements
+
+You must use Bootstrap for all pages and demonstrate a single column layout and tow or more column formatting.
+
+*I used mixed formatting but for the most part used a two column layout in the columns.html file.*
+
+You must have a separate CSS file in which you write some of your own classes and that you use somewhere.
+
+*I created a custom.css file in which I created the .hero-text class, .container, and .main-page-container classes.*
+
+You'll need a navigation bar or menu that contains links to your pages
+
+*I created a navigation bar using Bootstrap that contains links to all of my pages.*
+
+You must have one of each kind of list
+
+*The navbar contains an unorderd list for the links, the Assignment requirements contains an ordered list and the implementation section on the main page includes a description list that defines how each element was used.*
+
+All main elements need to be styles consistently
+
+*I used Bootstrap for most of the styling but did create some custom classes that are used in both of the pages.*
+
+You must write all code yourself, no Dreamweaver.
+
+*I used Notepad++ for coding and VSCode with a plugin for spell checking.*
 
 
 ### Step 3: Creating a page using Github Pages
