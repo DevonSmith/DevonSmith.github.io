@@ -1,11 +1,11 @@
 ## Homework 1
 This homework assignment is about learning the basics of HTML and CSS. We will use git to upload our content to the our project repository. For this assignment rather than create our own framework we are required to use Boostrap. This popular CSS and Javascript framework can be used to create websites quickly and easity. However, this is a rather large framework at 240KB. 
 
-The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW1.html).
+*The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW1.html).
 
-The repository that contains this code can be found at [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+*The repository that contains this code can be found at [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
 
-The git location for this code is here: https://bitbucket.org/devonsmith7696/cs460-project-repository.git
+ https://bitbucket.org/devonsmith7696/cs460-project-repository.git
 
 ### Step 1: Download Git, Create an account on Bitbucket or Git, and use Git to create your initial repository for the class.
 
