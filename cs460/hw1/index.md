@@ -3,6 +3,10 @@ This homework assignment is about learning the basics of HTML and CSS. We will u
 
 The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW1.html).
 
+The repository that contains this code can be found at [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+
+The git location for this code is here: https://bitbucket.org/devonsmith7696/cs460-project-repository.git
+
 ### Step 1: Download Git, Create an account on Bitbucket or Git, and use Git to create your initial repository for the class.
 
 For this step I did not have to install Git. I have the Windows Subsystem for Linux installed on my PCs and used Git that was part of the Ubuntu system installed on that subsystem.
