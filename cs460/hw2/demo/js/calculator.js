@@ -1,15 +1,6 @@
- //TODO add validation for the user input
-// [0-9.*/+-\s]+
-// possibly use popper.js
-
-// This validator will remove any letters from the text field.
-//function validate(field){
-//    field.value = field.value.replace(/[a-zA-Z]/, '');
-//}
-
 // will validate the user's input field.
 function validate(referenceElement){
-    if (referenceElement.value.search(/[a-zA-Z]/) > -1){
+    if (referenceElement.value.search(/[a-zA-Z,]/) > -1){
         var instructions = "<p>You appear to have made a mistake!</p>" 
                          + "<p>Please remember the following:</p>"
                          + "<ol><li>You cannot use letters</li>"
@@ -21,6 +12,15 @@ function validate(referenceElement){
     else {
         document.getElementById("instructions").innerHTML = "";
         document.getElementById("instructions").style.visibility = "hidden";
+    }
+}
+
+// checks the status of the show stack checkbox
+function checkState(){
+    if(document.getElementById("showStack").checked == false){
+        document.getElementById("trace").innerHTML = "";
+        $("#outputbox").removeClass("output");
+        
     }
 }
 
@@ -38,8 +38,15 @@ function calculate(){
     var errorMessage = "";
     // start by making the output box for the stack trace styled.
     var trace = document.getElementById("trace");
-    $('#outputbox').addClass('output');
-    trace.innerHTML = "<p><strong>Contents of the stack:</strong></p>";
+    
+    if(document.getElementById("showStack").checked == true){
+        trace.innerHTML = "<p><strong>Contents of the stack:</strong></p>";
+        $('#outputbox').addClass('output');
+    }
+    else {
+        trace.innerHTML = "";
+        $("#outputbox").removeClass("output");
+    }
 
     // loop through the items in the input and process them.
     for (var i in expression){
@@ -47,12 +54,14 @@ function calculate(){
         if (/(?:\d*\.)?\d+/.test(expression[i])){
             var stackElements = "";
             stack.push(expression[i]);
-            for (var i in stack){
-                stackElements += stack[i] + ' ';
+            if(document.getElementById("showStack").checked == true){
+                for (var i in stack){
+                    stackElements += stack[i] + ' ';
+                }
+                trace.innerHTML += "<div class='tabbed'><p>After push operation: " 
+                                + stackElements
+                                + "</p></div>";
             }
-            trace.innerHTML += "<div class='tabbed'><p>After push operation: " 
-                            + stackElements
-                            + "</p></div>";
 
         }
         // otherwise it's an operator and needs to be processed.
@@ -96,18 +105,19 @@ function calculate(){
                 default:
                     break;    
             }
-            // create an ouput string for the stack elements.
-            var outputString = "";
-            for (var j in stack){
-                
-                outputString += stack[j] + ' ';
+            if(document.getElementById("showStack").checked == true){
+                // create an ouput string for the stack elements.
+                var outputString = "";
+                for (var j in stack){
+                    
+                    outputString += stack[j] + ' ';
+                }
+                // place the stack information into the trace.
+                trace.innerHTML += "<div class='tabbed'><p>After " 
+                                + expression[i] 
+                                + " operation:    " 
+                                + outputString;
             }
-            // place the stack information into the trace.
-            trace.innerHTML += "<div class='tabbed'><p>After " 
-                            + expression[i] 
-                            + " operation:    " 
-                            + outputString;
-            
         }
         // the input from the user created an invalid state.
         // not enough items in the stack to perform an operation.
