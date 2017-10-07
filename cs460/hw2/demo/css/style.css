@@ -1,0 +1,63 @@
+/* import the title font */
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+body {
+    background-color: #4A1058;
+    padding: 5rem;
+}
+
+h1{
+    font-family: 'Lobster', cursive;
+    color: #fff;
+}
+
+.tabbed{
+    margin-left: 5em;
+}
+
+.huge-text{
+    font-size: 8em;
+}
+
+.calc-form{
+    margin-top: 5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem 1rem;
+}
+
+.output{
+    margin-top: 5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.button-row{
+    margin-top: 1rem;
+}
+
+.red-text {
+    color: #f00
+}
+
+#instructions {
+    position: absolute;
+    background: #FFC107;
+    color: black;
+    width: 400px;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    text-align: left;
+    z-index: 100;
+}
+.help-button{
+    font-size: 2rem;
+    color: #4A1058;
+    margin: 0;
+}
+
+.form{
+    padding: 1rem 1rem;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Online Postfix Calculator</title>
+</head>
+<body>
+    <!-- Title row for the calculator -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="huge-text">Postfix Calculator</h1>
+        </div>
+    </div>
+    <!--  end of title row -->
+    <!-- row for the calculator form -->
+    <div class="row">
+        <div class="col-sm-3">
+            &nbsp;
+        </div>
+        <!-- div containing the form -->
+        <div class="col-sm-6 calc-form">
+            <p class='text-right help-button'><span class='glyphicon glyphicon-question-sign'></span></p>
+            <div class='form'>
+            <p>Postfix calculator:</p>
+            <!-- test input for the postfix expression -->
+            <input type="text" id="user-input" class='form-control' 
+            onkeyup="validate(this)">
+            <div id='instructions' style='visibility: hidden;'></div>
+            <!-- button for calculating -->
+            <div class="text-right button-row"><button class="btn btn-primary" type="submit" onclick="calculate()">Calculate</button></div>
+            <!-- output field for solutions and error messages -->
+            <div id="output"></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            &nbsp;
+        </div>
+    </div>
+    <!-- row for printing the contents of the stack after each operating -->
+    <div class="row">
+        <div class="col-sm-3">
+            &nbsp;
+        </div>
+        <!-- column for output -->
+        <div id="outputbox" class="col-sm-6">
+            <div id="trace"></div>
+        </div>
+        <div class="col-sm-3">
+            &nbsp;
+        </div>
+    </div>
+    <!-- end of page -->
+    <!-- scripts at the end of the body to limit load time -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- popper for inputs that don't pass validation -->
+    <script src="js/popper.min.js"></script>
+    <!-- javascript for processing user input -->  
+    <script src="js/calculator.js"></script>
+</body>
+</html>
