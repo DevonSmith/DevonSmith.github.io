@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <Title>Devon Smith - Homework 1</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+    </head>
+    <body>
+        <!-- Navigation section -->
+         <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+              </button>
+              <a class="navbar-brand" href="#">Devon Smith</a>
+            </div>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="columns.html">Inktober</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- end of the navigation section -->
+        
+        <!-- main body container -->
+        <div class="container">
+            <div class="main-page-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-center">
+                            <img src="img/bootstrap-html5-css3.png" alt=" HTML5, CSS, and Bootstrap">
+                        </p>
+                        <p class="text-center hero-text">
+                            This HTML page uses bootstrap as specified by the Homework 1 assignment 
+                            document for CS460: Software Engineering I at 
+                            <a href="http://www.wou.edu">Western Oregon University</a>.
+                        </p>
+                        
+                        <h2>HTML Assignment</h2>
+                        <p>
+                            This is one part of the assignment. For this assignment we are required to
+                            make a Github Pages webpage using jekyll and create
+                            a HTML file that is uploaded to a class homework repository. This document is 
+                            for the HTML component of the assignment, you can find the github portion of 
+                            the assignment at
+                            <a href="http://devonsmith.github.io">http://devonsmith.github.io</a>
+                        </p> 
+                    
+                    <h2>Homework Assignment Requirements</h2>
+                    <p>
+                        Write a multi-page, hyperlinked set of web pages on a subject of your choice. The 
+                        content is irrelevant, it's the HTML and CSS that matters. Here are some specific 
+                        requirements for your work: 
+                        <ol>
+                            <li>
+                                You must use Bootstrap for the layout of all pages and must demonstrate 
+                                both single column layout and two or more column formatting.
+                            </li>
+                            <li>
+                                You must have a separate CSS file (e.g. styles.css) in which you write 
+                                some of your own classes and that you use somewhere.</li>
+                            <li>
+                                You'll need a navigation bar or menu that contains links to all your 
+                                pages
+                            </li>
+                            <li>You need to have at least one table</li>
+                            <li>You must have one of each kind of list: ol, ul and dl</li>
+                            <li>All main elements need to be styled consistently: use those defined by 
+                                Bootstrap or use your own. But please, no obnoxious colors or backgrounds. 
+                                You should attempt to make a professional and modern looking web page.</li>
+                            <li>You must write all code yourself and may not use a WYSIWYG designer such as
+                                Dreamweaver. Good (free) HTML and CSS aware editors include Atom, Brackets, 
+                                Visual Studio Code, Notepad++ and Textmate (OS X only)</li>
+                        </ol>
+                    </p>
+                    <h2>Requirement Implementation</h2>
+                    <p>
+                        <dl>
+                            <dt>
+                                You must use Bootstrap for the layout of all pages and must demonstrate 
+                                both single column layout and two or more column formatting.
+                            </dt>
+                            <dd>
+                                Initially I started by using a stripped down version of Bootstrap 4 Beta 
+                                but since the documentation was poor I decided to use Bootstrap 3 CDN
+                            </dd>
+                            <dt>
+                                You must have a separate CSS file (e.g. styles.css) in which you write some
+                                of your own classes and that you use somewhere.
+                            </dt>
+                            <dd>This uses the CSS files from Bootstrap 3 and a custom CSS file named, 
+                                custom.css.
+                            </dd>
+                            <dt>
+                                You'll need a navigation bar or menu that contains links to all your pages
+                            </dt>
+                            <dd>
+                                A navigation bar is included on each of the pages.
+                            </dd>
+                            <dt>
+                                You must have one of each kind of list: ol, ul and dl
+                            </dt>
+                            <dd>
+                                An unordered list is used for the navigation bar, an ordered list is used 
+                                for the "Homework Assignment Requirements" section. A description list is 
+                                used for this list of met requirements.
+                            </dd>
+                            <dt>
+                                All main elements need to be styled consistently: use those defined by 
+                                Bootstrap or use your own. But please, no obnoxious colors or backgrounds. 
+                                You should attempt to make a professional and modern looking web page.
+                            </dt>
+                            <dd>
+                                This page uses the default bootstrap themes for most elements with a few 
+                                custom formatting classes specific for this page.
+                            </dd>
+                            <dt>
+                                You must write all code yourself and may not use a WYSIWYG designer such as
+                                Dreamweaver. Good (free) HTML and CSS aware editors include Atom, Brackets,
+                                Visual Studio Code, Notepad++ and Textmate (OS X only).
+                            </dt>
+                            <dd>The development of these pages I used Notepad++. I did use the tutorials at 
+                                W3Schools at 
+                                <a href="https://www.w3schools.com/bootstrap/">
+                                    https://www.w3schools.com/bootstrap/
+                                </a>
+                            </dd>
+                        </dl>
+                    </p>
+                    <p>
+                        <h2>Table Requirement</h2>
+                        <p> 
+                            Below is an example of a table. Tables are somewhat superfluous using CSS and 
+                            especially using Bootstrap's grid model. In this example of a table I'm going 
+                            to put my current progress on the Inktober 2017 drawing challenges.
+                        </p>
+                        <table class="col-sm-6">
+                            <thead>
+                                <th>Date</th>
+                                <th>Challenge</th>
+                                <th>Completed</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Oct. 1</td>
+                                    <td>Swift</td>
+                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Oct. 2</td>
+                                    <td>Divided</td>
+                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Oct. 3</td>
+                                    <td>Poison</td>
+                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of body container -->
+        <!-- scripts -->       
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
+        <!-- end of scripts -->
+    </body>
+</html>
