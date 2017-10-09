@@ -6,19 +6,19 @@ function validate(referenceElement){
                          + "<ol><li>You cannot use letters</li>"
                          + "<li>You must use <a href='https://en.wikipedia.org/wiki/Reverse_Polish_notation'>RPN</a></li>"
                          + "<li>Do not include commas in large numbers</li></ol>";
-        document.getElementById("instructions").innerHTML = instructions;
-        document.getElementById("instructions").style.visibility = "visible";
+        $("#instructions").html(instructions);
+        $("#instructions").css("visibility", "visible");
     }
     else {
-        document.getElementById("instructions").innerHTML = "";
-        document.getElementById("instructions").style.visibility = "hidden";
+        $("#instructions").empty();
+        $("#instructions").css("visibility", "hidden");
     }
 }
 
 // checks the status of the show stack checkbox
 function checkState(){
-    if(document.getElementById("showStack").checked == false){
-        document.getElementById("trace").innerHTML = "";
+    if($("#showStack").is(":checked") == false){
+        $("#trace").empty();
         $("#outputbox").removeClass("output");
         
     }
@@ -28,7 +28,7 @@ function checkState(){
 function calculate(){
     // input for the calculator
     // good input for testing: 15 7 1 1 + - / 3 * 2 1 1 + + -
-    var string = document.getElementById("user-input").value;
+    var string = $("#user-input").val();
     // trim the white space off the ends of the string then create 
     // an array split on the spaces.
     var expression = string.trim().split(" ");
@@ -37,14 +37,14 @@ function calculate(){
     // a string for outputting error messages
     var errorMessage = "";
     // start by making the output box for the stack trace styled.
-    var trace = document.getElementById("trace");
+    var trace = $("#trace");
     
-    if(document.getElementById("showStack").checked == true){
-        trace.innerHTML = "<p><strong>Contents of the stack:</strong></p>";
+    if($("#showStack").is(":checked") == true){
+        trace.html("<p><strong>Contents of the stack:</strong></p>");
         $('#outputbox').addClass('output');
     }
     else {
-        trace.innerHTML = "";
+        trace.empty();
         $("#outputbox").removeClass("output");
     }
 
@@ -55,13 +55,13 @@ function calculate(){
         if (/(?:\d*\.)?\d+/.test(expression[i]) && isNaN(expression[i]) == false){
             var stackElements = "";
             stack.push(expression[i]);
-            if(document.getElementById("showStack").checked == true){
+            if($("#showStack").is(":checked") == true){
                 for (var i in stack){
                     stackElements += stack[i] + ' ';
                 }
-                trace.innerHTML += "<div class='tabbed'><p>After push operation: " 
+                trace.append("<div class='tabbed'><p>After push operation: " 
                                 + stackElements
-                                + "</p></div>";
+                                + "</p></div>");
             }
 
         }
@@ -98,7 +98,7 @@ function calculate(){
                                         + "<span class='glyphicon glyphicon-exclamation-sign'></span> " 
                                         + "Input error: Cannot divide by zero!"
                                         + "</span>";
-                        document.getElementById("output").innerHTML = errorMessage;       
+                        $("#output").html(errorMessage);       
                         return;
                     }
                     stack.push(a / b);
@@ -106,18 +106,17 @@ function calculate(){
                 default:
                     break;    
             }
-            if(document.getElementById("showStack").checked == true){
+            if($("#showStack").is(":checked") == true){
                 // create an ouput string for the stack elements.
                 var outputString = "";
                 for (var j in stack){
-                    
                     outputString += stack[j] + ' ';
                 }
                 // place the stack information into the trace.
-                trace.innerHTML += "<div class='tabbed'><p>After " 
-                                + expression[i] 
-                                + " operation:    " 
-                                + outputString;
+                trace.append("<div class='tabbed'><p>After " 
+                            + expression[i] 
+                            + " operation:    " 
+                            + outputString);
             }
         }
         // the input from the user created an invalid state.
@@ -127,9 +126,24 @@ function calculate(){
                             + "<span class='glyphicon glyphicon-exclamation-sign'></span> "
                             + "An error has occurred: Please check your expression."
                             + "</span>";
-            document.getElementById("output").innerHTML = errorMessage;
+            $("#output").html(errorMessage);
+            $("#trace").empty();
+            $("#outputbox").removeClass("output");
             return;
         } 
-    } 
-    document.getElementById("output").innerHTML = "Answer: " + stack.pop();  
+    }
+    if(stack.length == 1){
+        $("#output").html("Answer: " + stack.pop());
+    }
+    // There was more than one item left in the stack.
+    else {
+        
+        errorMessage = "<span class='red-text'>" 
+        + "<span class='glyphicon glyphicon-exclamation-sign'></span> "
+        + "An error has occurred: There was more than one element in the stack " 
+        + "at the end of your expression. Please check your expression."
+        + "</span>";
+        $("#output").html(errorMessage);
+    }
+      
 }
