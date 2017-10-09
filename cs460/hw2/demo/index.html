@@ -1,173 +1,186 @@
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Online Postfix Calculator</title>
-</head>
-<body>
-    <!-- Title row for the calculator -->
-    <div class="row">
-        <div class="col-sm-12">
-            <h1 class="huge-text">Postfix Calculator</h1>
-        </div>
-    </div>
-    <!--  end of title row -->
-    <!-- row for the calculator form -->
-    <div class="row">
-        <div class="col-sm-3">
-            &nbsp;
-        </div>
-        <!-- div containing the form -->
-        <div class="col-sm-6 calc-form">
-            <p class='text-right help-button'>
-                <a href="#" data-toggle="modal" data-target="#modalHelp">
-                    <span class='glyphicon glyphicon-question-sign'></span>
-                </a>
-            </p>
-            <div class='form'>
-            <p>Postfix calculator:</p>
-            <!-- test input for the postfix expression -->
-            <input type="text" id="user-input" class='form-control' 
-            onkeyup="validate(this)">
-            <div id='instructions' style='visibility: hidden;'></div>
-            <!-- button for calculating -->
-            <div class="button-row checkbox">
-                <label><input id="showStack" type="checkbox" value="" onclick='checkState()'>Show stack</label>
-                <span class='button-mover'>
-                    <button class="btn btn-primary" type="submit" onclick="calculate()">Calculate</button>
-                </span>
-            </div>
-            <!-- output field for solutions and error messages -->
-            <div id="output"></div>
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='css/style.css'>
+        <title>Online Postfix Calculator</title>
+    </head>
+    <body>
+        <!-- Title row for the calculator -->
+        <div class='row'>
+            <div class='col-sm-12'>
+                <h1 class='huge-text'>Postfix Calculator</h1>
             </div>
         </div>
-        <div class="col-sm-3">
-            &nbsp;
-        </div>
-    </div>
-    <!-- row for printing the contents of the stack after each operating -->
-    <div class="row">
-        <div class="col-sm-3">
-            &nbsp;
-        </div>
-        <!-- column for output -->
-        <div id="outputbox" class="col-sm-6">
-            <div id="trace"></div>
-        </div>
-        <div class="col-sm-3">
-            &nbsp;
-        </div>
-    </div>
-    <!-- end of page -->
-
-    <!-- Modal Help -->
-  <div class="modal fade" id="modalHelp" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-            <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="pill" href="#Instructions">Instructions</a></li>
-                <li><a data-toggle="pill" href="#Technologies">Technologies</a></li>
-                <li><a data-toggle="pill" href="#About">About</a></li>
-            </ul>
-                    
-            <div class="tab-content">
-                <div id="Instructions" class="tab-pane fade in active">
-                    <h3>Instructions</h3>
-                    <p>
-                        This is a reverse polish notation, or postfix calulator. Postfix or reverse polish 
-                        notation is a mathematical notation in which the operators follow the operands.
-                        This calulator will perform the following operations:
-                    </p>
-                    <ul>
-                        <li>Addition (+)</li>
-                        <li>Subtraction (-)</li>
-                        <li>Multiplication (*)</li>
-                        <li>Division (/)</li>
-                    </ul>
-                    <p>
-                        The use of postfix notation means that there is no need for parenthesis in mathematical expressions.
-                        This calculator can process mathematical strings using only numbers along with +, - , *, and / symbols.
-                    </p>
-                    <h4>Example</h4>
-                    <p>
-                        The following is an example of an expression that can be expressed in postfix notation. This example 
-                        comes from wikipedia.
-                    </p>
-                    <p>
-                        The expression ((15 / (7 − (1 + 1))) * 3) − (2 + (1 + 1)) can be expressed with postfix notation as 
-                        15 7 1 1 + - / 3 * 2 1 1 + + -
-                    </p>
-                    <p>This type of notation was commonly used in calculators because it was simple to implement using a 
-                        basic stack. This projects attempts to replicate that behavior using Javascript. If you would like to
-                        see how the calculator is using the stack to solve a postfix expression you can check the "Show stack"
-                        checkbox and you will get a list of the stack elements after each operation.
-                    </p>
-
+        <!--  end of title row -->
+        <!-- row for the calculator form -->
+        <div class='row'>
+            <div class='col-sm-3'>
+                &nbsp;
+            </div>
+            <!-- div containing the form -->
+            <div class='col-sm-6 calc-form'>
+                <p class='text-right help-button'>
+                    <a href='#' data-toggle='modal' data-target='#modalHelp'>
+                        <span class='glyphicon glyphicon-question-sign'></span>
+                    </a>
+                </p>
+                <div class='form'>
+                <p>Postfix calculator:</p>
+                <!-- test input for the postfix expression -->
+                <input type='text' id='user-input' class='form-control' 
+                onkeyup='validate(this)' onkeypress='if(event.keyCode==13)calculate();'>
+                <div id='instructions' style='visibility: hidden;'></div>
+                <!-- button for calculating -->
+                <div class='button-row checkbox'>
+                    <label><input id='showStack' type='checkbox' value='' onclick='checkState()'>Show stack</label>
+                    <span class='button-mover'>
+                        <button class='btn btn-primary' type='submit' onclick='calculate()'>Calculate</button>
+                    </span>
                 </div>
-                <div id="Technologies" class="tab-pane fade">
-                    <h3>Technologies</h3>
-                    <h4>HTML 5</h4>
-                    <p>This page uses HTML 5 for the main application body.</p>
-                    <h4>Bootstrap</h4>
-                    <p>Bootstrap is toolkit for developing applications with HTML, CSS, and Javascript. The goal of Bootstrap 
-                        is to allow you to quickly develop web applications wihtout the need to implement all the fundamental
-                        UI elements. It provides a number of classes and javascript elements used in this page.
-                    </p>
-                    <h4>Javascript</h4>
-                    <p>
-                        The logic of this application is built on Javascript. The goal of this project was to familiarize myself
-                        with Javascript and the common libraries used for developing rich web applications.
-                    </p>
-                    <h4>JQuery</h4>
-                    <p>
-                        JQuery is a Javascript library taht provides a number of selectors and HTML document traversal mechanisms
-                        that can be used to manipulate elements in an HTML document.
-                    </p>
-                    <h4>Popper.js</h4>
-                    <p>
-                        Popper.js is a small popup and tooltip library that lets you easily create tooltips and popups for your 
-                        web applications.
-                    </p>
-                    <h4>Glyphicons</h4>
-                    <p>
-                        Glyphicons is a collection monochromatic icons. These are included in Bootstrap 3 but you can get them
-                        <a href='http://glyphicons.com/'>here</a> 
-                    </p>
-                </div>
-                <div id="About" class="tab-pane fade">
-                    <h3>About</h3>
-                    <p>Author: Devon Smith</p>
-                    <p>Created for CS460 at Western Oregon University, Fall 2017.</p>
-                    <P>
-                        You can find the project description 
-                        <a href="http://www.wou.edu/~morses/classes/cs46x/assignments/HW2.html">here</a>.
-                    </P>
+                <!-- output field for solutions and error messages -->
+                <div id='output'></div>
                 </div>
             </div>
+            <div class='col-sm-3'>
+                &nbsp;
+            </div>
         </div>
-      </div>
-      
-    </div>
-  </div>
+        <!-- row for printing the contents of the stack after each operating -->
+        <div class='row'>
+            <div class='col-sm-3'>
+                &nbsp;
+            </div>
+            <!-- column for output -->
+            <div id='outputbox' class='col-sm-6'>
+                <div id='trace'></div>
+            </div>
+            <div class='col-sm-3'>
+                &nbsp;
+            </div>
+        </div>
+        <!-- end of page -->
 
-    <!-- scripts at the end of the body to limit load time -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <!-- popper for inputs that don't pass validation -->
-    <script src="js/popper.min.js"></script>
-    <!-- javascript for processing user input -->  
-    <script src="js/calculator.js"></script>
-</body>
+        <!-- Modal Help -->
+        <div class='modal fade' id='modalHelp' role='dialog'>
+            <div class='modal-dialog'>
+                <!-- Modal content-->
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                    <button type='button' class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class='modal-body'>
+                        <ul class='nav nav-pills'>
+                            <li class='active'><a data-toggle='pill' href='#Instructions'>Instructions</a></li>
+                            <li><a data-toggle='pill' href='#Technologies'>Technologies</a></li>
+                            <li><a data-toggle='pill' href='#About'>About</a></li>
+                        </ul>
+                        <!-- Application help container -->        
+                        <div class='tab-content'>
+                            <!-- General calculator instructions -->
+                            <div id='Instructions' class='tab-pane fade in active'>
+                                <h3>Instructions</h3>
+                                <p>
+                                    This is a reverse Polish notation, a.k.a. postfix, calculator. 
+                                    Postfix is a mathematical notation in which the operators follow the operands. 
+                                    This calculator will perform the following operations:
+                                </p>
+                                <ul>
+                                    <li>Addition (+)</li>
+                                    <li>Subtraction (-)</li>
+                                    <li>Multiplication (*)</li>
+                                    <li>Division (/)</li>
+                                </ul>
+                                <p>
+                                    Postfix notation does not require parentheses in mathematical expressions. 
+                                    This calculator can process mathematical strings using only numbers along with +, - , *, and / symbols.
+                                </p>
+                                <p>
+                                    A valid input will have integer or floating point numbers and mathematical operators separated by spaces
+                                    in postfix form.
+                                </p>
+                                <h4>Example</h4>
+                                <p>
+                                    The following is an example of an expression postfix notation. This example comes from Wikipedia.
+                                </p>
+                                <p>
+                                    The expression ((15 / (7 - (1 + 1))) * 3) - (2 + (1 + 1)) can be expressed with postfix notation as 
+                                    15 7 1 1 + - / 3 * 2 1 1 + + -
+                                </p>
+                                <p>
+                                    This type of notation was commonly used in calculators because it was simple to implement using a 
+                                    basic stack. This project attempts to replicate that behavior using JavaScript. To see how the calculator 
+                                    is using the stack to solve a postfix expression, check "Show stack."
+                                </p>
+
+                            </div>
+                            <!-- End of instructions -->
+                            <!-- Summary of technologies used -->
+                            <div id='Technologies' class='tab-pane fade'>
+                                <h3>Technologies</h3>
+                                <h4>HTML 5</h4>
+                                <p>This page uses HTML 5 for the main application body.</p>
+                                <h4>Bootstrap</h4>
+                                <p>
+                                    Bootstrap is toolkit for developing applications with HTML, CSS, and JavaScript which allows for 
+                                    the quick development of web applications without the need to implement all the fundamental
+                                    UI elements. It provides a number of classes and JavaScript elements used in this page.
+                                </p>
+                                <h4>JavaScript</h4>
+                                <p>
+                                    The logic of this application is built on JavaScript. The project allowed me to familiarize myself
+                                    with JavaScript and the common libraries used for developing rich web applications.
+                                </p>
+                                <h4>JQuery</h4>
+                                <p>
+                                    JQuery is a JavaScript library that provides a number of selectors and HTML document traversal mechanisms
+                                    which can be used to manipulate elements in an HTML document.
+                                </p>
+                                <h4>Popper.js</h4>
+                                <p>
+                                    Popper.js is a small popup and tooltip library that allows for the easy creation of tooltips and popups for  
+                                    web applications.
+                                </p>
+                                <h4>Glyphicons</h4>
+                                <p>
+                                    Glyphicons is a collection of monochromatic icons. These are included in Bootstrap 3 and also available 
+                                    <a href='http://glyphicons.com/'>here</a>.
+                                </p>
+                            </div>
+                            <!-- End of technologies used -->
+                            <!-- About software -->
+                            <div id='About' class='tab-pane fade'>
+                                <h3>About</h3>
+                                <p>Author: Devon Smith</p>
+                                <p>Created for CS460 at Western Oregon University, Fall 2017.</p>
+                                <P>
+                                    You can find the project description 
+                                    <a href='http://www.wou.edu/~morses/classes/cs46x/assignments/HW2.html'>here</a>.
+                                </P>
+                            </div>
+                            <!-- End of about software -->
+                        </div>
+                        <!-- End of help container -->
+                    </div>
+                    <!-- End of modal body -->
+                </div>
+                <!-- End of modal content -->
+            </div>
+            <!-- End of modal -->
+        </div>
+        <!-- End of help -->
+
+        <!-- Scripts at the end of the body to limit load time -->
+        <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'
+            integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' 
+            crossorigin='anonymous'></script>
+        <script>window.jQuery || document.write("<script src='js/jquery.min.js'><\/script>")</script>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src='js/ie10-viewport-bug-workaround.js'></script>
+        <!-- popper for inputs that don't pass validation -->
+        <script src='js/popper.min.js'></script>
+        <!-- javascript for processing user input -->  
+        <script src='js/calculator.js'></script>
+    </body>
 </html>

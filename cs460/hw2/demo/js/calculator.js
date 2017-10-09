@@ -50,8 +50,9 @@ function calculate(){
 
     // loop through the items in the input and process them.
     for (var i in expression){
-        // if the item is a valid number push it onto the stack
-        if (/(?:\d*\.)?\d+/.test(expression[i])){
+        // if the item is a valid number push it onto the stack.
+        // Checks for and operand and validates it as a number.
+        if (/(?:\d*\.)?\d+/.test(expression[i]) && isNaN(expression[i]) == false){
             var stackElements = "";
             stack.push(expression[i]);
             if(document.getElementById("showStack").checked == true){
@@ -66,7 +67,7 @@ function calculate(){
         }
         // otherwise it's an operator and needs to be processed.
         // An operation can only be performed if there are two or more items on the stack.
-        else if (stack.length > 1) {
+        else if (stack.length > 1 && /[-+*\/]{1}/.test(expression[i])) {
             // variables for non-comutative operations.
             var a = 0;
             var b = 0;

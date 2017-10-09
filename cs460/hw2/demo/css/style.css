@@ -69,3 +69,7 @@ h1{
 .btn{
     float: right;
 }
+
+.img-left{
+    float: left;
+}
