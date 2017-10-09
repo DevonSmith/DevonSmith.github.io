@@ -140,8 +140,7 @@ function calculate(){
         
         errorMessage = "<span class='red-text'>" 
         + "<span class='glyphicon glyphicon-exclamation-sign'></span> "
-        + "An error has occurred: There was more than one element in the stack " 
-        + "at the end of your expression. Please check your expression."
+        + "An error has occurred: Please check your expression."
         + "</span>";
         $("#output").html(errorMessage);
     }
