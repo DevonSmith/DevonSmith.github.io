@@ -1,14 +1,14 @@
 ## Homework 2
-This homework assignment was about learning the basics of javascript application development. Building off the skills from homework 2 we will be writing a web application in javascript while still using HTML, CSS, and Bootstrap for the page layout.
+This homework assignment was about learning the basics of JavaScript application development. Building off the skills from homework 2, we wrote a web application in JavaScript while using HTML, CSS, and Bootstrap for the page layout.
 
-* You can find a description of this project [here]()
-* Demo located [here](https://devonsmith.github.io/cs460/hw2/demo).
+* You can find a description of this project [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW2.html)
+* Demo located [here](https://devonsmith.github.io/cs460/hw2/demo)
 * The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
 * https://bitbucket.org/devonsmith7696/cs460-project-repository.git
 
 ### Step 1: Setup the environment
 
-The first step for creating this project was to add additional directories to the assignment repository for this class.
+The first step for this project was adding additional directories to the assignment repository for this class.
 
 ```bash
 mkdir HW2
@@ -17,13 +17,13 @@ mkdir js
 mkdir css
 ```
 
-Then I needed to create a new feature branch on the git repository for this homework assignment. I also need to checkout that branch so I can edit the code separate from my homework 1 work.
+Then I needed to create a new feature branch for this homework assignment on the git repository. I also need to checkout that branch so I could edit the code separate from my homework 1 work.
 
 ```bash
 git checkout -b hw2
 ```
 
-This command created a new branch and checked it out all in one step. Now that I have the new branch created I can start making the files for this code branch.
+This command created a new branch and checked it out all in one step. With the new branch created, I was able to begin making the files for this code branch.
 
 ```bash
 touch index.html
@@ -33,19 +33,19 @@ git commit -m "Initial code for HW2."
 git push origin hw2
 ```
 
-That should be a good start. I'm going to initially start by placing my javascript code at the end of my body tag in the HTML and eventually move it to a specific .js file.
+That's a good starting point for my page. I began by placing my JavaScript code at the end of my body tag in the HTML, and eventually moved it to a specific .js file.
 
 ### Step 2: Think of a project and design it
 
-I've been working on all of the assignments more or less at the same time. I get the initial bit of code roughly created for all of the projects and have been slowly refining the projects and homework assignments over time. In Homework 3 we're implementing a project from CS260: Data Structures in C# instead of in Java. For this project I decided to do the same thing. I'm going to implement Homework 3 in JavaScript.
+I've been working on all of the assignments at approximately the same time. I get the initial bit of code roughed out for all of my projects, and then refine and finalize the assignments over time. In Homework 3 we're implementing a project from CS260: Data Structures in C# instead of in Java, and for this project I decided to do the same type of conversion. I'm going to implement Homework 3 in JavaScript.
 
-The project for Homework 3 is to implement a stack-based calculator that uses postfix a.k.a. reverse polish notation. This is a pretty typical project you find in a data structures class and should allow me to learn some of the ins and outs of the JavaScript type system. I will of course create an application with a user interface written in java and will use the web page to provide feedback to the user and help with the usage of the calculator.
+My project for Homework 3 is implementing a stack-based calculator that uses postfix a.k.a. reverse polish notation. This is a typical project for a data structures class and it should allow me to learn some of the ins and outs of the JavaScript type system. The user interface and user help will be written in HTML, and the calculator logic will be written in Java.
 
 ### Step 3: Wireframe Creation
 
-As the first part of the application design phase I am creating a wireframe that will act as the basic layout for my application and will guide my development. I know that I'm going to use HTML, CSS, Bootstrap, Javascript, JQuery, and Popper.js as they are all in my toolkit for this class. So I'm going to try and design something that can be done with those libraries and frameworks.
+The first part of my application design phase was to create a wireframe to act as the basic layout for my application and will guide my development. I know that I'm going to use HTML, CSS, Bootstrap, Javascript, JQuery, and Popper.js since they're all in my toolkit for this class, so I designed my project to be done with those libraries and frameworks.
 
-For my design I used the free software Pencil Project by Evolus Co. Ltd. This tool allows you to create great application wire frames and is open source. You can get it [here](http://pencil.evolus.vn/). Here is the design I came up with:
+For my design I used the free software Pencil Project by Evolus Co. Ltd. This tool allows you to create great application wire frames and it is open source. You can get it [here](http://pencil.evolus.vn/). Here's the design I came up with:
 
 Here are the wireframes:
 
@@ -64,7 +64,7 @@ Here are the wireframes:
 
 ### Step 4: Creating the Working Page
 
-The first step after the design phase was to create a basic web page that would act as the user interface for the application. So I started by creating the HTML and CSS layout of the page.
+The first step after the design phase was to create a basic web page that would act as the user interface for the application. I began by creating the HTML and CSS layout of the page.
 
 ```html
 <!DOCTYPE html>
@@ -149,14 +149,14 @@ The first step after the design phase was to create a basic web page that would 
 </html>
 ```
 #### CSS
-To get the page looking the way I wanted it to I needed to add some custom CSS. Part if this was choosing a cursive font to be used with the page layout. I chose to use "Lobster" from Google Web Fonts. I included this in my CSS file named style.css.
+To get the page looking the way I wanted it, I needed to add some custom CSS. This included choosing a cursive font to use in the page layout. I chose "Lobster" from Google Web Fonts, and included it in my CSS file named style.css.
 
 ```css
 /* import the title font */
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 ```
 
-Then I created the CSS to get the page looking the way I wanted it. This was iterated on some throughout the project as I created new code or adjusted how things looked.
+Then I created the CSS to get the page looking the way I wanted. The CSS was adjusted throughout the project as I created new code and refined the page's appearance.
 
 ```css
 body {
@@ -235,7 +235,7 @@ h1{
 ```
 ##### Calculate Function
 
-After the main parts of the page were created I started writing the JavaScript code that would run the application. Initially I started to create the code for the calculator function.
+After the main parts of the page were built, I wrote the JavaScript code that would run the application, beginning with the calculator function.
 
 ```js
 // process the expression
@@ -364,7 +364,7 @@ function calculate(){
 }
 ```
 #### Input Validation Function
-Once I had the code for the actual calculator written I started to write the code for input validation on the text box for the calculator. For this I created a validate() method that was fired onKeyUp.
+Once I had written code for the calculator itself, I wrote the code for input validation on the calculator's text box. I created a validate() method that was fired onKeyUp.
 
 ```js
 // will validate the user's input field.
@@ -384,11 +384,11 @@ function validate(referenceElement){
     }
 }
 ```
-This code will create the popper dynamically and could be altered to provide more validation checking if needed.
+This code creates the popper dynamically and can be altered to provide more validation checking as needed.
 
 #### User Friendly Check Box
 
-After that was created I needed to implement the checkbox that would allow the user to choose if they wanted to see the contents of the stack as the application was being run. This will check to see if the user has unchecked the checkbox and will clear the stack printout.
+Then I implemented a checkbox that allows the user to choose whether or not to view the contents of the stack as the application is being run. It also checks to see if the user has unchecked the checkbox and clears the stack printout accordingly.
 
 ```js
 // checks the status of the show stack checkbox
@@ -403,7 +403,7 @@ function checkState(){
 
 #### Adding Some Help
 
-After I had the core application up and running I added the instructions and about information in a help menu which can be accessed by clicking on a question mark in the top right of the calculator body. This will take you to a modal menu that will provide you with instructions on how to use the calculator and information about the calculator itself. For this I used the modal classes from Bootstrap.
+With core application up and running, I added the instructions and about information in a help menu accessed by clicking on a question mark in the top right of the calculator body. This opens a modal menu that provides instructions for calculator use and information about the calculator itself. For this I used the modal classes from Bootstrap.
 
 ```html
  <!-- Modal Help -->
@@ -461,7 +461,7 @@ After I had the core application up and running I added the instructions and abo
                 </p>
                 <p>
                     This type of notation was commonly used in calculators because 
-                    it was simple to implement using      a basic stack. This 
+                    it was simple to implement using a basic stack. This 
                     project attempts to replicate that behavior using JavaScript. 
                     To see how the calculator is using the stack to solve a postfix 
                     expression, check "Show stack."
@@ -532,7 +532,8 @@ This is an example of the fully functional web page in the various states during
 
 ### Step 5: Merging Back to Master
 
-Now that the application was all tested and ready to be merged. I then used git to merge the information into master branch of my repository.
+Now that the application was tested and ready to be merged, I used git to merge the information into master branch of my repository.
+
 ```bash
 git add *
 git commit -m "final code cleanup"
