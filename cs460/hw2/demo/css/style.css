@@ -11,8 +11,8 @@ h1{
     color: #fff;
 }
 
-.tabbed{
-    margin-left: 5em;
+#stack-list{
+    list-style: none;
 }
 
 .huge-text{

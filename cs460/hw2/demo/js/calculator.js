@@ -38,9 +38,10 @@ function calculate(){
     var errorMessage = "";
     // start by making the output box for the stack trace styled.
     var trace = $("#trace");
-    
+    var list; // a placeholder for the list of stack states.
     if($("#showStack").is(":checked") == true){
-        trace.html("<p><strong>Contents of the stack:</strong></p>");
+        trace.html("<p><strong>Contents of the stack:</strong></p><ul id='stack-list'></ul>");
+        list = $("#stack-list");
         $('#outputbox').addClass('output');
     }
     else {
@@ -59,9 +60,9 @@ function calculate(){
                 for (var i in stack){
                     stackElements += stack[i] + ' ';
                 }
-                trace.append("<div class='tabbed'><p>After push operation: " 
+                list.append("<li>After push operation: " 
                                 + stackElements
-                                + "</p></div>");
+                                + "</li>");
             }
 
         }
@@ -113,10 +114,11 @@ function calculate(){
                     outputString += stack[j] + ' ';
                 }
                 // place the stack information into the trace.
-                trace.append("<div class='tabbed'><p>After " 
+                list.append("<li>After " 
                             + expression[i] 
-                            + " operation:    " 
-                            + outputString);
+                            + " operation: " 
+                            + outputString
+                            +"</li>");
             }
         }
         // the input from the user created an invalid state.
