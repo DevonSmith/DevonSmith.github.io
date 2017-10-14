@@ -1,3 +1,8 @@
+---
+title: Devon Smith
+layout: default
+---
+
 ## Homework 1
 This homework assignment is about learning the basics of HTML and CSS. We will use git to upload our content to the our project repository. Rather than create our own framework, we will use Boostrap, a popular CSS and Javascript framework can be used to create websites quickly and easily. However, it is a rather large framework at 240KB. 
 

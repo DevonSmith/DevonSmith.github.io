@@ -1,3 +1,8 @@
+---
+title: Devon Smith
+layout: default
+---
+
 ## Homework 2
 This homework assignment was about learning the basics of JavaScript application development. Building off the skills from homework 2, we wrote a web application in JavaScript while using HTML, CSS, and Bootstrap for the page layout.
 
