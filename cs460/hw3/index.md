@@ -41,7 +41,7 @@ Postfix Calculator. Recognizes these operators: + - * /
 Please enter q to quit
 
 > 10 0 /
-    >>> 10 0 / = Can&apos;t divide by zero
+    >>> 10 0 / = Can\'t divide by zero
 Please enter q to quit
 
 >
