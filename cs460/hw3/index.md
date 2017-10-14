@@ -167,7 +167,7 @@ Starting at the bottom I wrote the interface for my ```LinkedStack<T>``` class. 
 
 **Code for ILinkedStack<T>**
 Creating this interface was straight forward. I implemented the abstract classes that were used in the *StackADT.java* file. The primary difference between this and the C# code is that C# uses PascalCase for the method names and java uses camelCase. I also defined this interface using generics rather than using a boxing technique, and omitted the ```isEmpty()``` method from the java application in favor of a Count property. In the code I'll need to check ```stack.Count == 0``` instead of ```stack.isEmpty()```
-```C#
+```csharp
 namespace CS460_Postfix_Calculator
 {
     interface ILinkedStack<T>
@@ -196,7 +196,7 @@ namespace CS460_Postfix_Calculator
 **Code for Node<T>**
 The basic code of this class should be similar to the code used in the Java version of this application. I did use properties instead of having public variables as part of the class. In the Java application ```data``` and ```node``` were both public variables. The Java verstion of this application also does not use generics, this C# version does to avoid object boxing.
 
-```C#
+```csharp
 namespace CS460_Postfix_Calculator
 {
     class Node<T>
@@ -235,7 +235,7 @@ namespace CS460_Postfix_Calculator
 **Code for LinkedStack<T>**
 This ```LinkedStack<T>``` class implements the ```ILinkedStack<T>``` interface and all of its methods. The logic for these methods is similar to the code used for the Java application but provides a property, ```Count``` that will allow the application to check for and empty stack or handle a stack with too few or too many elements.
 
-```C#
+```csharp
 using System;
 
 namespace CS460_Postfix_Calculator
@@ -322,7 +322,7 @@ namespace CS460_Postfix_Calculator
 **The Program Code**
 
 The start of the code added a using statment for ```System.Text.RegularExpression``` for checking for valid operators and operands.
-```C#
+```csharp
 using System;
 using System.Linq;
 using System.Text;
@@ -345,7 +345,7 @@ namespace CS460_Postfix_Calculator
 
 The first bit of code I wrote was to check for operands and operators. This would allow me to differentiate between operators, operands, and invalid inputs.
 
-```C#
+```csharp
 /// <summary>
 /// Returns true if the supplied string is a valid decimal number.
 /// </summary>
@@ -369,7 +369,7 @@ static bool IsOperator(string input)
 
 The next code I wrote was the ```Calculate(string[] arr)``` which will take an array of operators and operand and process them. If the calculator encounters an error it will throw and exception that can be caught in ```Main()```. If there is an invalid operand or input it will throw an ```ArgumentException```. If the stack has inadequate elements for an operation or has too many elements at the end it will throw a generic ```Exception``` with a message. If there is an attempt to divide by zero the method will throw a ```DivideByZeroException```.
 
-```C#
+```csharp
        /// <summary>
         ///     Calculates the value of a reverse polish/postfix expression.
         /// </summary>
@@ -448,7 +448,7 @@ The next code I wrote was the ```Calculate(string[] arr)``` which will take an a
 
 The ```Main``` application code starts by telling the user what is going on and how to use the application. Then it takes a postfix expression from the user and breaks it into an array before passing that on the the ```Calculate()``` method. The application also has a main loop that will run until the user enters "q" to quit the application. Once the execution is complete it will output the result to the end user. The goal of this application was to have it look as much like the original Java application as possible. So it outputs information to the user in the same way.
 
-```C#
+```csharp
 /// <summary>
 ///     Application calculates expressions in reverse polish notation.
 ///     Expressions are strings of operators and operands separated by
@@ -534,14 +534,14 @@ As I worked with @skoliver89 we began testing our code and refining it. We wante
 During testing @skoliver89 found a flaw in his code which would break if someone accidentially put multiple spaces between the operators or operands. This would result in an empty value in the array used for the calculation. I found that my code was suseptible to the same flaw. Stephen began looking for a way to refine the regular expression used to validate intput and I said, "I wonder if there is a way to split a string with a regular expression." I found ```RegEx.Split()``` which we used to improve the way we split the user intput into arrays. 
 
 This code:
-```C#
+```csharp
 Console.Write("Please enter q to quit\n\n> ");
 string rawInput = Console.ReadLine();
 // split the input on a regular expression.
 string[] input = new rawInput.Split(' ');
 ```
 was updated to this code:
-```C#
+```csharp
 Console.Write("Please enter q to quit\n\n> ");
 string rawInput = Console.ReadLine();
 // split the input on a regular expression.
