@@ -12,7 +12,7 @@ Project description.
 #### State Tests from CS460 HW3 Java Code
 
 
-''Testing the default output when starting the application:''
+**Testing the default output when starting the application:**
 
 ```bash
 Postfix Calculator. Recognizes these operators: + - * /
@@ -21,7 +21,7 @@ Please enter q to quit
 >
 ```
 
-''Testing a valid expression on the calculator:''
+**Testing a valid expression on the calculator:**
 
 ```bash
 Postfix Calculator. Recognizes these operators: + - * /
@@ -34,20 +34,20 @@ Please enter q to quit
 >
 ```
 
-''Testing and expression that divides by zero:''
+**Testing and expression that divides by zero:**
 
 ```bash
 Postfix Calculator. Recognizes these operators: + - * /
 Please enter q to quit
 
 > 10 0 /
-    >>> 10 0 / = Can\'t divide by zero
+    >>> 10 0 / = Can't divide by zero
 Please enter q to quit
 
 >
 ```
 
-''Testing an invalid statement that produces a stack exception:''
+**Testing an invalid statement that produces a stack exception:**
 
 ```bash
 Postfix Calculator. Recognizes these operators: + - * /
@@ -63,7 +63,7 @@ Please enter q to quit
 
 This causes the calculator to produce a message telling the user what happened during the calculation.
 
-''Testing an incomplete expression:''
+**Testing an incomplete expression:**
 
 ```bash
 Postfix Calculator. Recognizes these operators: + - * /
