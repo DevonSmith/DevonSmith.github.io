@@ -3,7 +3,14 @@ title: Devon Smith
 layout: default
 ---
 ## Homework 3
-Project description.
+For this project I will be creating a C# implementation of a previously writeen Java application. The goal of this project is to write a simple example C# application that will demonstrate my knowledge and understanding of the C# language and development tools.
+
+The purpose of this project is refamiliarize myself with C# and Visual Studio so I can be ready to work on the ASP.NET MVC applications in our next set of assignments.
+
+* You can find a description of this assignment [here]().
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+* https://bitbucket.org/devonsmith7696/cs460-project-repository.git
+
 
 ### Step 1: Environment Setup
 
@@ -144,8 +151,13 @@ As a personal design preference I decided that all communication with the user w
 
 ### Step 4: Implementation
 
-For the implementation of my version of this project I started with the base classes and worked my way up.
+#### Working with Other Students
 
+Since I was already familiar with C# I volunteered to work with other students. Working as a group provides goot teaching and learning opportunities for everyone in the group. Everyone looks as a problem differently and the more people you have looking at a problem the more complete the solution.
+
+While working with other students we did not share code directly with one another. We did not copy and paste eachother's code. We did discuss patterns and possible solutions to problems or bugs we found in our code.
+
+I primarily worked with @skoliver89 during the creation of this project.
 
 ### Step 5: Testing
 
