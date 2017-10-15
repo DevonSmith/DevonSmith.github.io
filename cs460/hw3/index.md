@@ -165,7 +165,7 @@ When working on code I prefer to work in a bottom up pattern. I will start with 
 
 Starting at the bottom I wrote the interface for my ```LinkedStack<T>``` class. This interface was named ```ILinkedStack<T>```. For this I implemented the base class methods that needed to be part of the LinkedStack<T> class. I did not include the ```isEmpty()``` method because I would be using properties instead.
 
-**Code for ILinkedStack<T>**
+**Code for ILinkedStack&lt;T&gt;**
 Creating this interface was straight forward. I implemented the abstract classes that were used in the *StackADT.java* file. The primary difference between this and the C# code is that C# uses PascalCase for the method names and java uses camelCase. I also defined this interface using generics rather than using a boxing technique, and omitted the ```isEmpty()``` method from the java application in favor of a Count property. In the code I'll need to check ```stack.Count == 0``` instead of ```stack.isEmpty()```
 ```csharp
 namespace CS460_Postfix_Calculator
