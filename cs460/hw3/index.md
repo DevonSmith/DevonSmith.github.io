@@ -9,6 +9,7 @@ The purpose of this project is refamiliarize myself with C# and Visual Studio so
 
 * You can find a description of this assignment [here]().
 * The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+* Download the binary [here](https://bitbucket.org/devonsmith7696/cs460-project-repository/downloads/Postfix%20Calculator.exe)
 * https://bitbucket.org/devonsmith7696/cs460-project-repository.git
 
 
@@ -195,6 +196,7 @@ namespace CS460_Postfix_Calculator
 ``` 
 
 **Code for Node&lt;T&gt;**
+
 The basic code of this class should be similar to the code used in the Java version of this application. I did use properties instead of having public variables as part of the class. In the Java application ```data``` and ```node``` were both public variables. The Java verstion of this application also does not use generics, this C# version does to avoid object boxing.
 
 ```csharp
@@ -234,6 +236,7 @@ namespace CS460_Postfix_Calculator
 ```
 
 **Code for LinkedStack&lt;T&gt;**
+
 This ```LinkedStack<T>``` class implements the ```ILinkedStack<T>``` interface and all of its methods. The logic for these methods is similar to the code used for the Java application but provides a property, ```Count``` that will allow the application to check for and empty stack or handle a stack with too few or too many elements.
 
 ```csharp

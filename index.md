@@ -18,5 +18,5 @@ All of the code seen here is for CS460 and is hosted in the following repository
 
 1. [Homework 1](cs460/hw1): HTML, CSS, Git and Bootstrap
 2. [Homework 2](cs460/hw2) : Add in some Javascript and jQuery, use branching in Git
-3. Homework 3 : Learn C# by translating a Java application into a C# console app
+3. [Homework 3](cs460/hw3) : Learn C# by translating a Java application into a C# console app
 
