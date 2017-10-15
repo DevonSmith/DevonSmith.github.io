@@ -1,6 +1,6 @@
 ---
 title: Devon Smith
-layout: post
+layout: default
 ---
 ## Homework 3
 For this project I will be creating a C# implementation of a previously written Java application. The goal of this project is to write a simple example C# application that will demonstrate my knowledge and understanding of the C# language and development tools. It will also give me an opportunity to refamiliarize myself with C# and Visual Studio so that I'm ready to work on the ASP.NET MVC applications in our next set of assignments.
