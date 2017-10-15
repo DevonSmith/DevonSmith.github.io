@@ -166,6 +166,7 @@ When working on code I prefer to work in a bottom up pattern. I will start with 
 Starting at the bottom I wrote the interface for my ```LinkedStack<T>``` class. This interface was named ```ILinkedStack<T>```. For this I implemented the base class methods that needed to be part of the LinkedStack<T> class. I did not include the ```isEmpty()``` method because I would be using properties instead.
 
 **Code for ILinkedStack&lt;T&gt;**
+
 Creating this interface was straight forward. I implemented the abstract classes that were used in the *StackADT.java* file. The primary difference between this and the C# code is that C# uses PascalCase for the method names and java uses camelCase. I also defined this interface using generics rather than using a boxing technique, and omitted the ```isEmpty()``` method from the java application in favor of a Count property. In the code I'll need to check ```stack.Count == 0``` instead of ```stack.isEmpty()```
 ```csharp
 namespace CS460_Postfix_Calculator
@@ -193,7 +194,7 @@ namespace CS460_Postfix_Calculator
 }
 ``` 
 
-**Code for Node<T>**
+**Code for Node&lt;T&gt;**
 The basic code of this class should be similar to the code used in the Java version of this application. I did use properties instead of having public variables as part of the class. In the Java application ```data``` and ```node``` were both public variables. The Java verstion of this application also does not use generics, this C# version does to avoid object boxing.
 
 ```csharp
@@ -232,7 +233,7 @@ namespace CS460_Postfix_Calculator
 }
 ```
 
-**Code for LinkedStack<T>**
+**Code for LinkedStack&lt;T&gt;**
 This ```LinkedStack<T>``` class implements the ```ILinkedStack<T>``` interface and all of its methods. The logic for these methods is similar to the code used for the Java application but provides a property, ```Count``` that will allow the application to check for and empty stack or handle a stack with too few or too many elements.
 
 ```csharp
