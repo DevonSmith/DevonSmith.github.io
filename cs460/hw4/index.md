@@ -282,6 +282,30 @@ public ActionResult Page2(FormCollection form)
 ```
 
 #### The Main View
+The main view for the page will load the various partial views based on the state of the application.
+
+```html
+@{
+    ViewBag.Title = "Page 2";
+}
+<h2>Page 2 - User Name Generator</h2>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 well">
+        <p class="text-right"><span class="glyphicon glyphicon-question-sign" onclick="getInstructions()"></span></p>
+        @RenderPage("~/Views/Home/Page2Form.cshtml")
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+@RenderPage((ViewBag.Results == "true")
+            ? (ViewBag.UserName != null) 
+                ? "~/Views/Home/Page2Results.cshtml"
+                : "~/Views/Home/Page2ResultsError.cshtml"
+            : "~/Views/Home/Page2NoResults.cshtml"
+            )
+
+```
+
 
 #### The Partial Views
 
@@ -458,7 +482,66 @@ public ActionResult Page3(string loanAmount, string downPayment, string interest
 Once the fundamental logic for the page was created I could then build the pages. In this case I used the pattern from the previous pages. I first created the main view of the page and then created the parital views to be loaded into the main view.
 
 ```html
+@{
+    ViewBag.Title = "Page 3";
+}
 
+<h2>Page 3 - Loan Calculator</h2>
+<!-- Calculation Error Ouput, only viewable if we have non-empty error string and are on a post page.-->
+<!-- The main form of the page. -->
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 well">
+        <p class="text-right"><span class="glyphicon glyphicon-question-sign" onclick="getInstructions()"></span></p>
+        <!-- If we're on the post version of this page and have no error message, show the summary-->
+        @{  // I prefer to use a ternary operator for this part like I did with the other pages
+            // but in this class I wanted to tru doing this with an if/else statement because in 
+            // some cases this can be difficult for some programmers to read.
+            if (IsPost && ViewBag.ErrorMessage == "")
+            {
+                Html.RenderPartial("~/Views/Home/Page3Summary.cshtml");
+            }
+            else
+            {
+                // I this wasn't a post deliver a partial view that contains the calculator form.
+                Html.RenderPartial("~/Views/Home/Page3Form.cshtml");
+            }
+        }
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+<!-- end of the main form -->
+@if (IsPost && ViewBag.ErrorMessage != "")
+{
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 alert alert-danger">
+            <p><strong>An Error Occurred!</strong></p>
+            <p>Error message: @ViewBag.ErrorMessage </p>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+}
+<!-- space for placing instructions for the user if they click on the instructions link. -->
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div id="instructions" class="col-sm-6"></div>
+    <div class="col-sm-3"></div>
+</div>
+<!-- script for instruction output. -->
+<script>
+    function getInstructions() {
+        var directions = "<div class='alert alert-dismissible alert-info'>"
+            + "<button type= 'button' class='close' data-dismiss='alert'>&times;</button>"
+            + "<h4>Instructions</h4>"
+            + "<p>The is an automotive estimated monthly installment calculator, This will "
+            + "calculate your estimated monthly car payment based on the information provided."
+            + "</p></div>";
+        $("#instructions").empty();
+        $("#instructions").html(directions);
+    }
+</script>
+<!-- end of instruction script -->
 ```
 
 #### Creating the Partial Views
