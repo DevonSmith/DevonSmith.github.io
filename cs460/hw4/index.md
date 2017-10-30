@@ -4,7 +4,7 @@ layout: default
 ---
 
 ## Homework 4
-This homework assignment was about creating our first .NET MVC application. The goal of this project is to become familiar with the various ways you can use .NET MVC to create rich web applications. Through the creation of this page I learned how to use Razor and how to integrate C# programming with web application development.
+This homework assignment was about creating our first .NET MVC application. The goal was to become familiar with the various ways .NET MVC canb be used to create rich web applications. I learned how to use Razor and how to integrate C# programming with web application development.
 
 * You can find a description of this project [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW4.html)
 * Demo *unavailable*
@@ -13,13 +13,13 @@ This homework assignment was about creating our first .NET MVC application. The 
 
 ### Step 1: Creation of an Empty MVC Project
 
-I started this by creating a directory in my CS460 repository and adding a directory for the new project. I then started Visual Studio and created a new empty MVC application and added my ```.gitignore``` file to the base directory of the project. This could be done in the root of the entire repository but I prefer that each of the projects be their own self-sustaining directory. This way if I want to branch them into smaller projects later I can without much effort.
+I began by creating a directory in my CS460 repository and adding a directory for the new project. Then I started Visual Studio, created a new empty MVC application, and added my ```.gitignore``` file to the base directory of the project. This could be done in the root of the entire repository, but I prefer that each project be in their own self-sustaining directory so that I can easily branch them into smaller projects in the future if I find it beneficial.
 
 ### Step 2: Initial Setup and Creating the Home Page
 
 #### Setting up the Layout
 
-The first thing I did was add some links to pages for the menubar at the top of the page. I added the ```@HtmlActionLink()``` razorform elements to the menu. The menu would let you navigate but there was no idication of what page you were on. By default the "active" class was not being placed on the pages that you were currently on. So I added a ```ViewContext``` check that would allow me to add the class to the appropriate menu element. This was not the first time I have worked with .NET MVC, I worked with OrchardProject previously for content management. I used the code I had created for that project here. I used a ternary operator to choose which class is attached to the ```<li>``` item.
+First, I added some links to pages for the menubar at the top of the page. I added the ```@HtmlActionLink()``` razorform elements to the menu. The menu allowed navigation, but provided no indication of the currently active page because by default the "active" class was not being placed on the active page. I solved this by adding a ```ViewContext``` check that allowed me to add the class to the appropriate menu element. This wasn't the first time I'd worked with .NET MVC; I worked with OrchardProject previously for content management, so I used the code I had created for that project here. I used a ternary operator to choose which class is attached to the ```<li>``` item.
 
 ```html
 <div class="navbar-collapse collapse">
@@ -40,11 +40,11 @@ The first thing I did was add some links to pages for the menubar at the top of 
 ```
 #### Changing the Default Boostrap Theme
 
-Rather than reinvent the wheel I went to [Bootswatch](https://bootswatch.com/) and found a theme I liked. All the the themes from Bootswatch are Open Source (MIT License) and provide you with examples you can view to see how the themes look. I used these theme examples to build the elements of my page. 
+Rather than reinvent the wheel, I went to [Bootswatch](https://bootswatch.com/) and found a theme I liked. All the  themes from Bootswatch are Open Source (MIT License) and provide previews and code samples. I used these to help me construct elements of my page. 
 
 #### Creating the Home page.
 
-Once the menubar was created I moved onto the main part of the Index page. I created the list as specified by the class project directions. I first needed to create the page body. I did this by first creating the ```ActionListener``` for the home page in my ```HomeController.cs```. This was simple enough:
+After creating the menubar I moved onto the main part of the Index page. First I created the page body, which I did by creating the ```ActionListener``` for the home page in my ```HomeController.cs```.
 
 ```csharp
 /// <summary>
@@ -56,7 +56,7 @@ public ActionResult Index()
     return View();
 }
 ```
-Once that was created I could create the list of pages on the home page by adding a list as specified by the project page.
+I could then create the list of pages on the home page, which fulfilled the project requirement for a list.
 
 ```html
  <ul id="homepage-list">
@@ -87,7 +87,7 @@ Once that was created I could create the list of pages on the home page by addin
         </li>
     </ul>
 ```
-by default this looked fairly boring so I tried a number of different looks for the list of pages. I even tried using a description list. ultimately I didn't like the look of any of the options so I decided to theme the list using CSS.
+By default this had a boring visual design, so I tried a number of alternate looks and even tried a description list. Ultimately I wasn't satisfied with any of these, so I decided theme the list using CSS.
 
 ```css
 #homepage-list{
@@ -102,7 +102,7 @@ by default this looked fairly boring so I tried a number of different looks for 
 
 ```
 
-To add a hover effect I used JQuery to add a class to the ```<li>``` so I could create a CSS psudo class for this process but I opted to use JavaScript. Not because this was the best way to implement the hover effect I wanted, but I wanted to try to create the effect with JavaScript. 
+To add a hover effect, I could have used JQuery to add a class to the ```<li>``` so I could create a CSS pseudo class for this process. Instead I opted to use JavaScript, not because it's the best way to implement the hover effect I wanted but rather I wanted to try to create the effect with JavaScript. 
 
 ```js
 <script>
@@ -117,7 +117,8 @@ To add a hover effect I used JQuery to add a class to the ```<li>``` so I could 
 ```
 
 ### Step 3: Creating Page 1
-the first real page created for this project was about using query strings to get information from a form. In this case we were not to use any of the Razor helpers. We had to implement the form ourselves using HTML. I wanted to used a single page for this that would swap out elements depending on what state the form is in and what if the page is a post or not. As with the Home page creation I started by adding the ```ActionListener``` to the ```HomeController.cs```.
+The first real page created for this project uses query strings to get information from a form. The assignment specified that we couldn't use any of the Razor helpers, but instead had to implement the form ourselves using HTML. I wanted to used a single page that would swap out elements depending on the state of the form and whether or not the page is a post. As with the Home page creation, I started by adding the ```ActionListener``` to the ```HomeController.cs```.
+
 ```csharp
 /// <summary>
 /// Default action return from page 1.
@@ -136,7 +137,7 @@ public ActionResult Page1()
 ```
 #### Creating the Main Page
 
-I decided that I was going to write a basic demonstration of a user authentication. For this I wanted to present the user with a form that would allow them to guess some static username and password. If they got the login correct it would swap the page content to give them a message. Likewise when they failed to authenticate correctly. So I started by creating the base page and then would insert other pages as partial views depending on if they attempted to login or if they had attempted to login.
+I decided to write a basic demonstration of user authentication. I wanted to present the user with a form that would allow them to guess a static username and password. If they got the login correct, it would swap the page content to give them a message; if they failed to authenticate correctly, it would swamp the page content for a failure message. I started by creating the base page, and planned to insert other pages as partial views depending on if they had succeeded or failed the login.
 
 ```html
 @{
@@ -158,7 +159,7 @@ I decided that I was going to write a basic demonstration of a user authenticati
 ```
 #### Creating Partial Views
 
-One that was created I created the file ```Page1Form.cshtml``` which would contain the partial view that was the login form. For this I used a similar interface from my Homework 2 project. This would provide the user with instructions when they clicked on a help button. I used Bootstrap form examples.
+Then I created the file ```Page1Form.cshtml``` which would contain the partial view that was the login form. I used a similar interface from my Homework 2 project, one which would provide the user with instructions when they clicked on a help button. I used Bootstrap form examples.
 
 ```html
 <div class="well well-form">
@@ -188,7 +189,8 @@ One that was created I created the file ```Page1Form.cshtml``` which would conta
 </div>
 ```
 
-I then created the help JavaScript that would create the help box for the user. I also added a container for the help information.
+Then I created the help JavaScript that would create the help box for the user. I also added a container for the help information.
+
 ```js
 <div id="instructions"></div>
 <script>
@@ -205,7 +207,7 @@ I then created the help JavaScript that would create the help box for the user. 
     }
 </script>
 ```
-Once that was create I moved on to creating the partial view for after authentication.
+Then I moved on to creating the partial view for after authentication.
 
 ```html
 <!-- <h2>Page 1 Authentication</h2>-->
@@ -235,16 +237,16 @@ Once that was create I moved on to creating the partial view for after authentic
 
 
 ### Step 4: Creating Page 2
-The creation of this page was much the same as the first. In this case I was going to create a user name creation tool that uses a pattern much like the one used for user names at WOU. It has a form that you put your first name and last name in and it will generate you a username with the current year in two digits. I used a similar pattern for this project with a main view and partial view that I insert based on what the user has done. In this case I created the following pages:
+Creating this page was similar to creating the first. I planned to create a user name creation tool similar to the one used for user names at WOU. It has a form for first name and last name, and generates a user name by using that data and appending the last two digits of the current year. I used a similar pattern for this project, with a main view and partial view that reflect the user's input. In this case I created the following pages:
 
 * **Page2** - This page contains the main view.
 * **Page2Form** - This is the partial view for the form.
 * **Page2Instructions** - On this page I decided to move the instructions into their own view.
-* **Page2NoResults** - This partial view will be shown by default to provide the user with help as needed
-* **Page2Results** - This partial view will be shown when the username has been created.
-* **Page2ResultsError** - This partial view will be shown if the user doesn't provide all of the information needed to generate a username.
+* **Page2NoResults** - This partial view will be shown by default to provide the user with help as needed.
+* **Page2Results** - This partial view will be shown when the user name has been created.
+* **Page2ResultsError** - This partial view will be shown if the user doesn't provide all of the information needed to generate a user name.
 
-I started with the creation of the ```ActionResult``` for the get and post versions of the pages using C# attributes to specify which view the controller should provide.
+I started with the creation of the ```ActionResult``` for the get and post versions of the pages, using C# attributes to specify which view the controller should provide.
 
 ```csharp
  /// <summary>
@@ -311,7 +313,7 @@ The main view for the page will load the various partial views based on the stat
 
 **Form Partial View**
 
-This partial view contains the form that the user fills out to generate their username. There is a submit button and a reset button for the form.
+This partial view contains the form that the user fills out to generate their username. The form has a submit button and a reset button.
 
 ```html
 <!-- Start of the form -->
@@ -375,7 +377,7 @@ This partial view is created and displayed by default. It provides a basic conta
 </div>
 ```
 **Results Partial View**
-If there are results to show to the user this view will be loaded and will give the user their user name.
+If there are results to show to the user, this view will be loaded and will give the user their user name.
 
 ```html
 <div class="row">
@@ -394,6 +396,7 @@ If there are results to show to the user this view will be loaded and will give 
 ```
 **Error Partial View**
 This partial view is displayed when the user fails to provide all the information required to generate a user name for them.
+
 ```html
 <div class="row">
     <div class="col-sm-2"></div>
@@ -413,9 +416,9 @@ This partial view is displayed when the user fails to provide all the informatio
 </div>
 ```
 ### Step 5: Creating Page 3
-Following the directions from the project page I created a loan payment calculator. I decided I would get the monthly payment for an Auto Loan. I got the information fro the logic to calculate this value from [Wikipedia](https://en.wikipedia.org/wiki/Equated_monthly_installment). For this I was to use simple Model binding. I was not required to create a actual Model. I created the ```ActionResult``` for the get and post versions of this page with the logic for processing the input from the user. 
+Following the directions from the project page, I created a loan payment calculator. I decided to create an application that would get the monthly payment for an auto loan. I got the logic to calculate this value from [Wikipedia](https://en.wikipedia.org/wiki/Equated_monthly_installment). The assignment requirements said to use simple Model binding, but not an actual Model. I created the ```ActionResult``` for the get and post versions of this page; the post version contains the logic for processing the input from the user. 
 
-I could have taken in specific data types from the user, but since we're taking information from the user it was more efficient to take the elements in as strings and convert them to the appropriate data types. This also allows this data type checking to be done on the server instead of being done on the client-side using JavaScript. This was an intentional decision. I wanted to use JavaScript only for user presentation elements and to have all logic and input checking done on the server to keep the pages as lightweight as possible. Using JavaScript for too many elements can cause browsers to run slowly. This also allowed me to take a variety of possible inputs from the user. They can use dollar signs and commas in loan amounts and can place percentage symbols in the percentage rate field with no impact on the user experience.
+The calculator could have taken in specific data types, but since it's taking information from the user it was more efficient and user friendly to take the elements in as strings and convert them to the appropriate data types. This also allows data type checking to be done on the server, instead of client-side using JavaScript. Because too many JavaScript elements can cause browsers to run slowly, I preferred to keep the pages as lightweight as possible by using JavaScript only for user presentation elements, and making all logic and input checks on the server. This also allowed me to take a variety of possible inputs from the user; they can use dollar signs and commas in loan amounts and can place percentage symbols in the percentage rate field with no errors and no negative impact on the user experience.
 
 ```csharp
  /// <summary>
@@ -487,7 +490,7 @@ public ActionResult Page3(string loanAmount, string downPayment, string interest
 
 ```
 #### Creating the Main View
-Once the fundamental logic for the page was created I could then build the pages. In this case I used the pattern from the previous pages. I first created the main view of the page and then created the parital views to be loaded into the main view.
+Once the fundamental logic for the page was created, I could build the pages. I followed the same process as with the previous pages. First I created the main view of the page, then I created the partial views.
 
 ```html
 @{
@@ -495,7 +498,7 @@ Once the fundamental logic for the page was created I could then build the pages
 }
 
 <h2>Page 3 - Loan Calculator</h2>
-<!-- Calculation Error Ouput, only viewable if we have non-empty error string and are on a post page.-->
+<!-- Calculation Error Output, only viewable if we have non-empty error string and are on a post page.-->
 <!-- The main form of the page. -->
 <div class="row">
     <div class="col-sm-3"></div>
@@ -503,7 +506,7 @@ Once the fundamental logic for the page was created I could then build the pages
         <p class="text-right"><span class="glyphicon glyphicon-question-sign" onclick="getInstructions()"></span></p>
         <!-- If we're on the post version of this page and have no error message, show the summary-->
         @{  // I prefer to use a ternary operator for this part like I did with the other pages
-            // but in this class I wanted to tru doing this with an if/else statement because in 
+            // but in this class I wanted to try doing this with an if/else statement because in 
             // some cases this can be difficult for some programmers to read.
             if (IsPost && ViewBag.ErrorMessage == "")
             {
@@ -553,7 +556,7 @@ Once the fundamental logic for the page was created I could then build the pages
 ```
 
 #### Creating the Partial Views
-This page only contains two partial views. The form itself and the summary element.
+This page only contains two partial views: the form itself and the summary element.
 
 **Form Partial View**
 This partial view contains the form that the users will use to input the information.
@@ -604,3 +607,5 @@ This view shows the user the results of the calculation for their monthly paymen
     </ul>
 <a class='btn btn-primary' href='/Home/Page3'>Reset</a>
 ```
+### Finished Product
+![demo](img/webdemo.gif)
