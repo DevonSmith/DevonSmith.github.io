@@ -4,7 +4,7 @@ layout: default
 ---
 
 ## Homework 4
-Summary
+This homework assignment was about creating our first .NET MVC application. The goal of this project is to become familiar with the various ways you can use .NET MVC to create rich web applications. Through the creation of this page I learned how to use Razor and how to integrate C# programming with web application development.
 
 * You can find a description of this project [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW4.html)
 * Demo *unavailable*
@@ -314,28 +314,36 @@ The main view for the page will load the various partial views based on the stat
 This partial view contains the form that the user fills out to generate their username. There is a submit button and a reset button for the form.
 
 ```html
+<!-- Start of the form -->
 <form class="form-horizontal" action="~/Home/Page2" method="post">
     <fieldset>
+        <!-- Input for the user's first name -->
         <div class="form-group">
             <label class="col-lg-2 control-label" for="inputFirstName">First Name</label>
             <div class="col-lg-10">
                 <input class="form-control" id="inputFirstName" type="text" name="firstName" placeholder="First Name">
             </div>
         </div>
+        <!-- Input for the user's last name -->
         <div class="form-group">
             <label class="col-lg-2 control-label" for="inputLastName">Last Name</label>
             <div class="col-lg-10">
                 <input class="form-control" id="inputLastName" type="text" name="lastName" placeholder="Last Name">
             </div>
         </div>
+        <!-- Buttons -->
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
+                <!-- Submit button -->
                 <input class="btn btn-primary" type="submit" value="Submit" formmethod="post">
+                <!-- Reset form button -->
                 <input class="btn btn-default" type="reset" value="Reset">
             </div>
         </div>
     </fieldset>
 </form>
+<!-- End of the form -->
+
 ```
 **Instructions Partial View**
 
