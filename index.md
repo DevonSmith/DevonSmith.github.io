@@ -22,8 +22,6 @@ All of the code seen here is for CS460 and is hosted in the following repository
 4. [Homework 4](cs460/hw4): Learn .NET MVC 5 by creating a multi-page web application
 5. [Homework 5](cs460/hw5): Create a .NET MVC 5 web application using a simple database.
 
-#### Notes 
-Notes I kept on the topics for this class can be found [here](notes/).
-A PDF Copy of my had written notes from OneNote can be found [here](https://1drv.ms/u/s!AmjQqMdIhj2IhJh3R5OOdQug9wjH0w).
+
 
 
