@@ -20,4 +20,5 @@ All of the code seen here is for CS460 and is hosted in the following repository
 2. [Homework 2](cs460/hw2): Add in some Javascript and jQuery, use branching in Git
 3. [Homework 3](cs460/hw3): Learn C# by translating a Java application into a C# console app
 4. [Homework 4](cs460/hw4): Learn .NET MVC 5 by creating a multi-page web application
+5. [Homework 5](cs460/hw5): Create a .NET MVC 5 web application using a simple database.
 
