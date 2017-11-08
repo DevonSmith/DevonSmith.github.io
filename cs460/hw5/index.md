@@ -4,7 +4,7 @@ layout: default
 ---
 
 ## Homework 5
-This homework assignment was about creating a .NET MVC application that uses a simple database. The goal was to become familiar with how models work and how to interact with a basic database using .Net MVC. I learned how to use Razor form helpers and how to integrate C# programming to integrate a web application with a database.
+This homework assignment was about creating a .NET MVC application that uses a simple database. The goal was to become familiar with how models work and learn how to interact with a basic database using .Net MVC. I learned how to use Razor form helpers and how to integrate C# programming to integrate a web application with a database.
 
 * You can find a description of this project [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW5.html)
 * Demo *unavailable*
@@ -43,12 +43,13 @@ CREATE TABLE Requests(
 	Zip int NOT NULL,
 	-- County
 	County VARCHAR(100) NOT NULL
+    -- Date Stamp
+    DateStamp DATE NOT NULL
 
 );
-
 -- Add Some Testing Values to the database
 -- 1 
-INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County) 
+INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County, DateStamp) 
 	VALUES (1000000, 
 			'John Smith', 
 			'1970-02-26', 
@@ -56,21 +57,23 @@ INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County)
 			'Albany', 
 			'OR', 
 			97321, 
-			'Linn'
+			'Linn',
+			'2017-06-15'
 );
 -- 2
-INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County) 
+INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County, DateStamp) 
 	VALUES (1245372, 
 			'Sarah Edwards', 
 			'1982-04-17', 
-			'2916 SW Floence Place', 
+			'2916 SW Florence Place', 
 			'Monmouth', 
 			'OR', 
 			97361, 
-			'Polk'
+			'Polk',
+			'2017-06-15'
 	);
 -- 3
-INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County)
+INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County, DateStamp)
 	VALUES (3456789, 
 			'Aiden Cross', 
 			'2000-02-15', 
@@ -78,10 +81,11 @@ INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County)
 			'Portland', 
 			'OR', 
 			97230, 
-			'Multnomah'
+			'Multnomah',
+			'2017-06-16'
 	);
 -- 4
-INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County)
+INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County, DateStamp)
 	VALUES (9508231, 
 			'Aithnea Stalenhag', 
 			'1994-12-03', 
@@ -89,10 +93,11 @@ INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County)
 			'Corvallis', 
 			'OR', 
 			97330, 
-			'Benton'	
+			'Benton',
+			'2017-06-17'	
 	);
 -- 5
-INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County)
+INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County, DateStamp)
 	VALUES (8703621, 
 			'Andrea Sweet', 
 			'1984-03-23', 
@@ -100,7 +105,8 @@ INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County)
 			'Wilsonville', 
 			'OR', 
 			97322, 
-			'Clackamas'
+			'Clackamas',
+			'2017-06-19'
 	);
 ```
 While I was at it I also created a file that would destroy the database after testing.
@@ -189,6 +195,13 @@ namespace CS460_Homework_5.Models
         [StringLength(100)]
         [Display(Name = "County")]
         public string County { get; set; }
+        /// <summary>
+        /// Today's current date. This should be the date of the request.
+        /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Request Date")]
+        public DateTime DateStamp { get; set; }
 
 
         /// <summary>
@@ -250,7 +263,7 @@ From here I could create the controller and the action methods for my pages. Thi
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include ="ID, ODL, FullName, DOB, Street, City, USState, Zip, County")] Request request)
+        public ActionResult Index([Bind(Include ="ID, ODL, FullName, DOB, Street, City, USState, Zip, County, DateStamp")] Request request)
         { 
             // Check to see if the model state was good, if it was time to do some work.
             if (ModelState.IsValid)
@@ -295,9 +308,7 @@ Once that was complete I could move onto creating the views. The page for the ac
         <!-- message if the posting was successful -->
         @if (TempData["Success"] != null)
         {
-            <div class="alert alert-success">
-                <strong>Success:</strong> @TempData["Success"].ToString()
-            </div>
+            Html.RenderPartial("~/Views/Home/StatusOK.cshtml");
         }
         <!-- get partial view for form -->
         @RenderPage("~/Views/Home/ChangeOfAddressForm.cshtml")
@@ -308,6 +319,15 @@ Once that was complete I could move onto creating the views. The page for the ac
     <!-- end of right spacer -->
 </div>
 ```
+Here is the contents of the StatusOK.cshtml file.
+
+```csharp
+<!-- Present the user with confirmation that they completed their form correctly -->
+<div class="alert alert-success">
+    <strong>Success:</strong> @TempData["Success"].ToString()
+</div>
+```
+
 The interesting code is all contained in the form in which I used RazorForm helpers to build the form that was used to create the entries in the database. The downside to using this method was really it took a bit more time to get looking exactly the way I wanted it to look. This could have been done faster using HTML assuming you are more proficient at HTML than Razor. Either way works well, but since I have more experience with HTML/CSS I had to explicitly add classes and identifiers to some of the form inputs.
 
 ```html
@@ -357,10 +377,17 @@ The interesting code is all contained in the form in which I used RazorForm help
                 @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div id="inputCounty" class="form-group">
-            @Html.LabelFor(model => model.County, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.County, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.County, "", new { @class = "text-danger" })
+        <div id="inputLocationDate" class="form-group">
+            <div class="left">
+                @Html.LabelFor(model => model.County, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.County, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.County, "", new { @class = "text-danger" })
+            </div>
+            <div class="left">
+                @Html.LabelFor(model => model.DateStamp, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.DateStamp, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.DateStamp, "", new { @class = "text-danger"})
+            </div>
         </div>
         <div class="form-group">
             <input class="btn btn-primary" id="calculate" type="submit" value="Submit" formmethod="post" />
