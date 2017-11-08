@@ -4,7 +4,7 @@ layout: default
 ---
 
 ## Homework 5
-This homework assignment was about creating a .NET MVC application that uses a simple database. The goal was to become familiar with how models work and learn how to interact with a basic database using .Net MVC. I learned how to use Razor form helpers and how to integrate C# programming to integrate a web application with a database.
+This homework assignment was about creating a .NET MVC application that uses a simple database, and to become familiar with how models work and learn how to interact with a basic database using .Net MVC. I learned how to use Razor form helpers and how to use C# programming to integrate a web application with a database.
 
 * You can find a description of this project [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW5.html)
 * Demo *unavailable*
@@ -13,14 +13,14 @@ This homework assignment was about creating a .NET MVC application that uses a s
 
 ### Step 1: Creation of an Empty MVC Project
 
-I began by creating a directory in my CS460 repository and adding a directory for the new project. Then I started Visual Studio, created a new empty MVC application, and added my ```.gitignore``` file to the base directory of the project. After I had the initial setup I needed to use NuGET package manager to install the MVC Entity framework that I'm going to be using in this project.
+I began by creating a directory in my CS460 repository and adding a directory for the new project. Then I started Visual Studio, created a new empty MVC application, and added my ```.gitignore``` file to the base directory of the project. After I had the initial setup I needed to use NuGET package manager to install the MVC Entity framework to use in this project.
 
 ### Step 2: Took Notes About the Assignment
-I looked over the assignment and found it was to create an online DM change of address form much like the one used by the Oregon DMV. So I looked over the form and took notes of the fields I would need on the form and the information I would need to store in the database to process the requests.
+I reviewed the assignment, which was to create an online DM change of address form much like the one used by the Oregon DMV. I looked over the form and took notes of the fields I would need on the form and the information I would need to store in the database to process the requests.
 
 ### Step 3: Creating the Data Model
 
-I started by creating the database and the data model that would interact with that database. Usind the nores that I had created I then wrote a script that would create the database for me and add some test data.
+I started by creating the database and the data model that would interact with that database. Working from my notes, I wrote a script that would create the database for me and add some test data.
 ```sql
 -- Create a table for storing the change of address requests
 CREATE TABLE Requests(
@@ -109,7 +109,7 @@ INSERT INTO Requests (ODL, FullName, DOB, Street, City, USState, Zip, County, Da
 			'2017-06-19'
 	);
 ```
-While I was at it I also created a file that would destroy the database after testing.
+While I was at it, I also created a file that would destroy the database after testing.
 
 ```sql
 -- Remove the table from this database
@@ -117,7 +117,7 @@ DROP TABLE Requests;
 ```
 
 ### Step 4: Create the Data Model Class and Data Context Class
-Once I had tested both the scripts I moved on to creating the model that would interact with my database. This was a pretty straight-forward process. I just created a new data type that stored all the data I needed and I created a custom ToString() method for testing and diagnostic purposes if the need should ever arise.
+Once I had tested both the scripts, I moved on to creating the model that would interact with my database. This was a straight-forward process. I created a new data type that stored all the data I needed. and created a custom ToString() method for testing and diagnostic purposes should the need arise.
 
 ```csharp
 using System;
@@ -216,7 +216,7 @@ namespace CS460_Homework_5.Models
 
 }
 ```
-Once I had the model created I could create the Database Context for working with the database. I created the requred folder "DAL" which stands for Data Access Layer. I would prefer that the folder name be more explicit and have a formal name "Data Access Layer" but since the assignment requires the folder be named "DAL" I did just that. The database context is what will allow the data in the model to interact with the controller and view. The code for this is very simple.
+I could then create the Database Context for working with the database. I created the required folder "DAL." I would prefer the more formal and explicit folder name of "Data Access Layer," but since the assignment requires the folder be named "DAL" I used that instead. The database context is what will allow the data in the model to interact with the controller and view. The code for this is simple.
 
 ```csharp
 using System;
@@ -238,7 +238,7 @@ namespace CS460_Homework_5.DAL
 
 ### Step 5: Connecting to the Database
 
-Once that was setup I could then add the connection string to my Web.Config file. This connection string can be added to my project will tell the web application what location and provider to use to connect to the database. This is used in the Datbase Context to communicate with the database.
+I could then add the connection string to my Web.Config file. This connection string can be added to my project to tell the web application what location and provider to use to connect to the database. This is used in the Datbase Context to communicate with the database.
 
 ```xml
   <connectionStrings>
@@ -249,7 +249,7 @@ Once that was setup I could then add the connection string to my Web.Config file
 ```
 ### Step 6: Creating the Controller and Action Methods
 
-From here I could create the controller and the action methods for my pages. This project has two pages, one for creating a new address change request and another that allows you to view all the requests that are in the database.
+Then I could create the controller and the action methods for my pages. This project has two pages, one for creating a new address change request and another to view all the requests that are in the database.
 
 ```csharp
  public class HomeController : Controller
@@ -287,10 +287,10 @@ From here I could create the controller and the action methods for my pages. Thi
         }
     }
 ```
-I created the HttpPost version of the page so it would take all the information and process it. Once that was complete or if it was successful the page would place a "Success" message into the TempDataDictionary TempData so I could get the message out in the page and inform the user if their request was logged.
+I created the HttpPost version of the page so it would take all the information and process it. Once the command was complete, the page would place a "Success" message into the TempDataDictionary TempData so I could get the message out in the page and inform the user if their request was logged.
 
 ### Step 7: Creating the Views
-Once that was complete I could move onto creating the views. The page for the actual creation of a new request has a partial view that contains all the code for the form. This allows the interface to swap out forms if it was required. This is probably not a necessary kind of isolation for this project but using partial views is a good practice to have.
+I could then move onto creating the views. The page for the actual creation of a new request has a partial view that contains all the code for the form. This allows the interface to swap out forms as required. This kind of isolation is probably not necessary for this project, but it's good practice to use partial views.
 
 ```html
 
@@ -328,7 +328,7 @@ Here is the contents of the StatusOK.cshtml file.
 </div>
 ```
 
-The interesting code is all contained in the form in which I used RazorForm helpers to build the form that was used to create the entries in the database. The downside to using this method was really it took a bit more time to get looking exactly the way I wanted it to look. This could have been done faster using HTML assuming you are more proficient at HTML than Razor. Either way works well, but since I have more experience with HTML/CSS I had to explicitly add classes and identifiers to some of the form inputs.
+The interesting code is all contained in the form. I used RazorForm helpers to build the form that is used to create the entries in the database. The downside to this method was that it took more time to get it looking exactly the way I wanted. This could have been done faster using HTML, assuming you are more proficient with HTML than Razor. Either way works, but since I have more experience with HTML/CSS I had to explicitly add classes and identifiers to some of the form inputs.
 
 ```html
 <!-- get the model for the form -->
@@ -397,7 +397,7 @@ The interesting code is all contained in the form in which I used RazorForm help
 }
 ```
 
-After that page was created I made the view page that would allow you to inspect the requests in the database. This was significantly simpler than creating the form. Just a table with some elements in it created using a foreach loop.
+Then I made the view page that would allow you to inspect the requests in the database. This was significantly simpler than creating the form. It's just a table with some elements in it created using a foreach loop.
 
 ```html
 @{
@@ -443,7 +443,7 @@ After that page was created I made the view page that would allow you to inspect
     }
 </table>
 ```
-Once those pages were created I customized the layout for this page to add navigation and to add classes to the navigation bar based on page routing. I also added a warning message to the footer of the page. Since this is not an official Oregon DMV page I added a message that warns users.
+I customized the layout for this page to add navigation and to add classes to the navigation bar based on page routing. I also added a warning message to the footer of the page to inform users that this is not an official Oregon DMV page.
  
 ```html
 <!DOCTYPE html>
@@ -499,6 +499,6 @@ Once those pages were created I customized the layout for this page to add navig
 ```
 
 ### Project Complete
-Once the views had been created I tested the webpage and was able to view the test data I created in my database. I was also able to add information to the database.
+Finally, I tested the webpage and was able to view the test data I created in my database. I was also able to add information to the database.
 
 ![Preview](img/preview.gif)
