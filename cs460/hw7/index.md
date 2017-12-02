@@ -64,12 +64,683 @@ The JavaScript that drives this page's content can be found in Requirement 2
 
 Here is the Controller for this page:
 ```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Net;
+using System.Web.Mvc;
+using System.IO;
+using CS460_Homework_7.Models;
+using System.Diagnostics;
+using System.Collections;
+using CS460_Homework_7.DAL;
+
+namespace CS460_Homework_7.Controllers
+{
+    public class SearchController : Controller
+    {
+        private ActivityLogContext database = new ActivityLogContext();
+
+        // GET: Search JSON Object
+        [HttpGet]
+        public JsonResult Search(string safeSearch)
+        {
+            #region "Giphy Interaction"
+
+            /*********** Things we get from the user ****************************/
+            // The rating is determined by if the user is using safe search or not
+            // quick bool creation because this will be used multiple times and a
+            // conditional check against a bool is fast and a comparison against a
+            // string is slow.
+            bool nsfwSearch = (safeSearch == "nsfw");
+            // set the rating of the search to get back from the Giphy API.
+            string rating = (nsfwSearch) ? "r" : "g";
 
 
+            /************ Things that are dynamically created ****************************************/
+            // The URL for the content
+            string uri = "https://api.giphy.com/v1/gifs/search?api_key="
+                       + System.Web.Configuration.WebConfigurationManager.AppSettings["giphyAPIKey"]
+                       // The user's query
+                       + "&q=" + Request.QueryString["q"]
+                       // The rating requested by the user.
+                       + "&rating=" + rating
+                       // Always use English.
+                       + "&lang=en";
+
+            // Create a WebRequest
+            WebRequest dataRequest = WebRequest.Create(uri);
+            Stream dataStream = dataRequest.GetResponse().GetResponseStream();
+            // Get the gallery data
+
+            // This example will get the data as a object graph, and while this is nice, 
+            // the graph is slower to parse and not as useful. I will instead use a class
+            // to deserialize the Json data to.
+            //var galleryData = new System.Web.Script.Serialization.JavaScriptSerializer()
+            //                      .DeserializeObject(new StreamReader(dataStream)
+            //                      .ReadToEnd());
+
+            // Deserialize to the root class from GiphyImage.cs.
+            var galleryData = new System.Web.Script.Serialization.JavaScriptSerializer()
+                                  .Deserialize<RootObject>(new StreamReader(dataStream)
+                                  .ReadToEnd());
+
+            // Close
+            dataStream.Close();
+            // Create a list of images that will be passed to the client.   
+            List<GiphyImage> images = new List<GiphyImage>();
+
+            for (int i = 0; i < 25; ++i)
+            {
+                // create a new GiphyImage object
+                GiphyImage giphyImage = new GiphyImage();
+                // the data object from the list of images inside the galleryData
+                Datum data = galleryData.data[i];
+                // get the preview image URL from the datum
+                giphyImage.preview = data.images.downsized_medium.url;
+                // get the link to the Giphy page for the image from the datum.
+                giphyImage.url = data.url;
+                // get video alternatives for the gifs
+                // MP4 for browsers that support it.
+                giphyImage.mp4 = data.images.fixed_width.mp4;
+                // Webp for browsers that support that.
+                giphyImage.webp = data.images.fixed_width.webp;
+                // add the image data to the list.
+                images.Add(giphyImage);
+            }
+            #endregion
+            #region "Data Logging"
+            /********************* Logging of user search data ****************************/
+            // create the log item.
+            var log = database.UserAccessLogs.Create();
+            // What did the user search for?
+            log.SearchString = Request.QueryString["q"];
+            // The user agent string.
+            log.AgentString = Request.UserAgent;
+            // The time of the transaction
+            log.TimeStamp = DateTime.Now;
+            // The IP address of the request.
+            log.IPAddress = Request.UserHostAddress;
+            // Was the user looking for nsfw content?
+            log.NSFW = (nsfwSearch) ? "True" : "False";
+            // Add the information to the database.
+            database.UserAccessLogs.Add(log);
+            // save the changes to the database.
+            database.SaveChanges();
+
+            #endregion
+
+            // Return the Json request
+            return Json(images, JsonRequestBehavior.AllowGet);
+        }
+    }
+}
 ```
 
+The controller deserializes the data that comes from Giphy and only takes out the content that's needed. To do this there are two methods. You can deserialize to an object graph using the following code:
+
+```csharp
+var galleryData = new System.Web.Script.Serialization.JavaScriptSerializer()
+                       .DeserializeObject(new StreamReader(dataStream)
+                       .ReadToEnd());
+```
+This allows you to project the graph or traverse the graph to get the information you want from it. You can also create a class that contains the information from the object and deserialize to that data type. That is what I did for this project, here is the code to deserialize to an object:
+
+```csharp
+ var galleryData = new System.Web.Script.Serialization.JavaScriptSerializer()
+                                  .Deserialize<RootObject>(new StreamReader(dataStream)
+                                  .ReadToEnd());
+```
 
 Here is the model for the Giphy image data that is received when a search is performed:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace CS460_Homework_7.Models
+{
+    /// <summary>
+    /// GiphyImage class that's used to create the list that will be 
+    /// passed on to the search client.
+    /// </summary>
+    public class GiphyImage
+    {
+        // the url for linking to the Giphy image.
+        public string url { get; set; }
+        // the image we're going to render on our page.
+        public string preview { get; set; }
+        // the video we're going to render on our page instead.
+        public string mp4 { get; set; }
+        public string webp { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed height still image from Giphy's API
+    /// </summary>
+    public class FixedHeightStill
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The original size still image from Giphy's API
+    /// </summary>
+    public class OriginalStill
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed width version of the gif from Giphy's API
+    /// </summary>
+    public class FixedWidth
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image.
+        public string size { get; set; }
+        // the MP4  version of the image.
+        public string mp4 { get; set; }
+        // the size of the MP4 file.
+        public string mp4_size { get; set; }
+        // the WebP version of the file.
+        public string webp { get; set; }
+        // the size of the WebP file.
+        public string webp_size { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed height small still image from Giphy's API
+    /// </summary>
+    public class FixedHeightSmallStill
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed height down-sampled image from Giphy's API
+    /// </summary>
+    public class FixedHeightDownsampled
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+        // the WebP version of the file.
+        public string webp { get; set; }
+        // the size of the WebP file.
+        public string webp_size { get; set; }
+    }
+
+    /// <summary>
+    /// A preview image from Giphy's API
+    /// </summary>
+    public class Preview
+    {
+        // the width of the preview image.
+        public string width { get; set; }
+        // the height of the preview image.
+        public string height { get; set; }
+        // the location of the preview file.
+        public string mp4 { get; set; }
+        // the size of the preview file.
+        public string mp4_size { get; set; }
+    }
+
+    /// <summary>
+    /// The small fixed height image from Giphy's API
+    /// </summary>
+    public class FixedHeightSmall
+    {
+        // the url of the image
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+        // the MP4 version of the file.
+        public string mp4 { get; set; }
+        // the size of the MP4 version of the file.
+        public string mp4_size { get; set; }
+        // the WebP version of the file.
+        public string webp { get; set; }
+        // the size of the WebP version of the file.
+        public string webp_size { get; set; }
+    }
+
+    /// <summary>
+    /// The down-sized still image from Giphy's API
+    /// </summary>
+    public class DownsizedStill
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The downsized image from Giphy's API
+    /// </summary>
+    public class Downsized
+    {
+        public string url { get; set; }
+        public string width { get; set; }
+        public string height { get; set; }
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The large version of the down-sized image from Giphy's API
+    /// </summary>
+    public class DownsizedLarge
+    {
+        // The url of the image
+        public string url { get; set; }
+        // the width of the image
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed-width small still image from Giphy's API
+    /// </summary>
+    public class FixedWidthSmallStill
+    {
+        // the rul of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The webp preview image from Giphy's API
+    /// </summary>
+    public class PreviewWebp
+    {
+        // the url of the preview WebP file.
+        public string url { get; set; }
+        // the width of the video
+        public string width { get; set; }
+        // the height of the video.
+        public string height { get; set; }
+        // the file size of the video.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed width still image from Giphy's API
+    /// </summary>
+    public class FixedWidthStill
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed width small image from from Giphy's API
+    /// </summary>
+    public class FixedWidthSmall
+    {
+        // url to the page.
+        public string url { get; set; }
+        // width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the file.
+        public string size { get; set; }
+        // the MP4 version of the gif.
+        public string mp4 { get; set; }
+        // the size of the MP4 file.
+        public string mp4_size { get; set; }
+        // the WebP version of the file
+        public string webp { get; set; }
+        // the size of the WebP file.
+        public string webp_size { get; set; }
+    }
+
+    /// <summary>
+    /// The small down-sized image
+    /// </summary>
+    public class DownsizedSmall
+    {
+        // the url of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the MP4 video version of this size image.
+        public string mp4 { get; set; }
+        // the size of the video file
+        public string mp4_size { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed-width downsampled image.
+    /// </summary>
+    public class FixedWidthDownsampled
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+        // the WebP video version of this file. 
+        public string webp { get; set; }
+        // the WebP video file size.
+        public string webp_size { get; set; }
+    }
+
+    /// <summary>
+    /// The medium down-sized image.
+    /// </summary>
+    public class DownsizedMedium
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The original image uploaded to the Giphy service.
+    /// </summary>
+    public class Original
+    {
+        // the url to the original image.
+        public string url { get; set; }
+        // the size of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+        // the number of frames in the image.
+        public string frames { get; set; }
+        // the MP4 version of the file.
+        public string mp4 { get; set; }
+        // the size of the MP4 file.
+        public string mp4_size { get; set; }
+        // the WebP version of the file.
+        public string webp { get; set; }
+        // the size of the WebP file.
+        public string webp_size { get; set; }
+        // the original file hash.
+        public string hash { get; set; }
+    }
+
+    /// <summary>
+    /// The fixed-height version of the file.
+    /// </summary>
+    public class FixedHeight
+    {
+        // the url of the image.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+        // the MP4 version of this file.
+        public string mp4 { get; set; }
+        // the size of the MP4 file.
+        public string mp4_size { get; set; }
+        // the WebP version of the file.
+        public string webp { get; set; }
+        // the size of the WebP file.
+        public string webp_size { get; set; }
+    }
+
+    /// <summary>
+    /// The looping video image.
+    /// </summary>
+    public class Looping
+    {
+        // the MP4 version of the file to be looped.
+        public string mp4 { get; set; }
+        // the size of the MP4 file.
+        public string mp4_size { get; set; }
+    }
+
+    // the original MP4 video file.
+    public class OriginalMp4
+    {
+        // the width of the MP4 file.
+        public string width { get; set; }
+        // the height of the MP4 file.
+        public string height { get; set; }
+        // the MP4 file.
+        public string mp4 { get; set; }
+        // the size of the MP4 file.
+        public string mp4_size { get; set; }
+    }
+
+    /// <summary>
+    /// The preview gif
+    /// </summary>
+    public class PreviewGif
+    {
+        // the url to the preview gif.
+        public string url { get; set; }
+        // the width of the preview gif.
+        public string width { get; set; }
+        // the height of the preview gif.
+        public string height { get; set; }
+        // the size of the preview gif file.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// Low resolution still from invalid file type.
+    /// </summary>
+    public class __invalid_type__480wStill
+    {
+        // the url to the file.
+        public string url { get; set; }
+        // the width of the image.
+        public string width { get; set; }
+        // the height of the image.
+        public string height { get; set; }
+        // the size of the image file.
+        public string size { get; set; }
+    }
+
+    /// <summary>
+    /// The HD image of the gif as a video
+    /// </summary>
+    public class Hd
+    {
+        // the width of the video.
+        public string width { get; set; }
+        // the height of the video.
+        public string height { get; set; }
+        // the MP4 file location.
+        public string mp4 { get; set; }
+        // the MP4 file size.
+        public string mp4_size { get; set; }
+    }
+
+    /// <summary>
+    /// A collection of all the images that are delivered using Giphy's API
+    /// This includes the images that are defined above.
+    /// </summary>
+    public class Images
+    {
+        public FixedHeightStill fixed_height_still { get; set; }
+        public OriginalStill original_still { get; set; }
+        public FixedWidth fixed_width { get; set; }
+        public FixedHeightSmallStill fixed_height_small_still { get; set; }
+        public FixedHeightDownsampled fixed_height_downsampled { get; set; }
+        public Preview preview { get; set; }
+        public FixedHeightSmall fixed_height_small { get; set; }
+        public DownsizedStill downsized_still { get; set; }
+        public Downsized downsized { get; set; }
+        public DownsizedLarge downsized_large { get; set; }
+        public FixedWidthSmallStill fixed_width_small_still { get; set; }
+        public PreviewWebp preview_webp { get; set; }
+        public FixedWidthStill fixed_width_still { get; set; }
+        public FixedWidthSmall fixed_width_small { get; set; }
+        public DownsizedSmall downsized_small { get; set; }
+        public FixedWidthDownsampled fixed_width_downsampled { get; set; }
+        public DownsizedMedium downsized_medium { get; set; }
+        public Original original { get; set; }
+        public FixedHeight fixed_height { get; set; }
+        public Looping looping { get; set; }
+        public OriginalMp4 original_mp4 { get; set; }
+        public PreviewGif preview_gif { get; set; }
+        public __invalid_type__480wStill __invalid_name__480w_still { get; set; }
+        public Hd hd { get; set; }
+    }
+
+    /// <summary>
+    /// User information for the image. If the image was submitted by a user, their information
+    /// will be collected here.
+    /// </summary>
+    public class User
+    {
+        // the user's avatar location
+        public string avatar_url { get; set; }
+        // the user's channel banner
+        public string banner_url { get; set; }
+        // the url to the user's profile page.
+        public string profile_url { get; set; }
+        // the username of the user.
+        public string username { get; set; }
+        // the display name of the user.
+        public string display_name { get; set; }
+        // the link to the twitter account of the user.
+        public string twitter { get; set; }
+        // the indicator if the account has been verified.
+        public bool is_verified { get; set; }
+    }
+
+    /// <summary>
+    /// This is the datum that is returned from Giphy's API it contains the information
+    /// from the search.
+    /// </summary>
+    public class Datum
+    {
+        public string type { get; set; }
+        public string id { get; set; }
+        public string slug { get; set; }
+        public string url { get; set; }
+        public string bitly_gif_url { get; set; }
+        public string bitly_url { get; set; }
+        public string embed_url { get; set; }
+        public string username { get; set; }
+        public string source { get; set; }
+        public string rating { get; set; }
+        public string content_url { get; set; }
+        public string source_tld { get; set; }
+        public string source_post_url { get; set; }
+        public int is_indexable { get; set; }
+        public string import_datetime { get; set; }
+        public string trending_datetime { get; set; }
+        public Images images { get; set; }
+        public string title { get; set; }
+        public User user { get; set; }
+    }
+
+    /// <summary>
+    /// Pagination data from Giphy's API
+    /// </summary>
+    public class Pagination
+    {
+        // the total numer of images in this query.
+        public int total_count { get; set; }
+        // the number of items that you retrieved.
+        public int count { get; set; }
+        // the offset or starting image for this page.
+        public int offset { get; set; }
+    }
+
+    /// <summary>
+    /// File metadata from Giphy's API
+    /// </summary>
+    public class Meta
+    {
+        // the status of the response (200 should be good)
+        public int status { get; set; }
+        // the message attached (OK)
+        public string msg { get; set; }
+        // The unique identifier of the response.
+        public string response_id { get; set; }
+    }
+
+    /// <summary>
+    /// The root object of the JSON file.
+    /// </summary>
+    public class RootObject
+    {
+        // I list of all the data in the API response.
+        public List<Datum> data { get; set; }
+        // The pagination data in the API response.
+        public Pagination pagination { get; set; }
+        // The meta data from the response.
+        public Meta meta { get; set; }
+    }
+}
+```
 
 ### Requirement 2
 *JavaScript is n a separate file in the Scripts folder and is included via ```@section```. The JavaScript file uses JQuery.*
