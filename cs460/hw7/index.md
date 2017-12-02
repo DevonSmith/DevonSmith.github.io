@@ -348,13 +348,13 @@ namespace CS460_Homework_7.DAL
 ```
 
 For fun I created a page that allows you to view the stored requests in the log.
-![image of log]("img/log.png")
+![image of log](img/log.png)
 
 ### Requirement 6
 *The page works, searches Giphy and shows results in a grid; is responsive*
 
 This page creates a grid of images or videos based on the user query.
-![preview of grid]("img/grid.png")
+![preview of grid](img/grid.png)
 
 ### Requirement 7
 *Uses JSON for AJAX calls; JSON object is used client-side to modify the DOM and build the search results*
