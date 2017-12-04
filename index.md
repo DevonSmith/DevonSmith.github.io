@@ -23,6 +23,7 @@ All of the code seen here is for CS460 and is hosted in the following repository
 5. [Homework 5](cs460/hw5): Create a .NET MVC 5 web application using a simple database.
 6. [Homework 6](cs460/hw6): Create a .NET MVC 5 web application using a complex pre-existing database.
 7. [Homework 7](cs460/hw7): Create a .NET MVC 5 web application that uses a REST API.
+8. [Homework 8](cs460/hw8): Create a .NET MVC 5 web application that uses self-created relational database and AJAX.
 
 
 
