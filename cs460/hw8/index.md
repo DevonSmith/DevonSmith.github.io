@@ -8,7 +8,7 @@ This homework assignment is about learning how to create a web application that 
 
 * The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW8.html).
 * The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
-* Live Demo Unavialable
+* Live Demo on [Microsoft Azure](http://dsmith16-cs460-hw8.azurewebsites.net/)
 
 Note for this log I decided to write the log as a series of requirements instead of a sequence of steps. This should make the journal easier to read and find the content that matches the project requirements.
 
