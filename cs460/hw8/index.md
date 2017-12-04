@@ -3,7 +3,7 @@ title: Devon Smith
 layout: default
 ---
 
-## Homework 7
+## Homework 8
 This homework assignment is about learning how to create a web application that uses a relational database we created and AJAX. We will use C# 7.0, MVC 5,and JavaScript to create a web application that uses AJAX to show some information to the user. We need to provide dynamically generated buttons for each Genre in that when clicked will get a JsonResult from our web application which will contain all the artwork in the database that is in that genre.
 
 * The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW8.html).
