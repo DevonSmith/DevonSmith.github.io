@@ -8,10 +8,10 @@ This homework assignment is about learning how to publish a web application that
 
 * The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW9.html).
 * The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
-* Deployed Website on [Microsoft Azure](http://dsmith16-cs460-hw8.azurewebsites.net/)
+* ~~Deployed Website on Microsoft Azure~~ *No longer available*
 
 ### Step 1: Initial Setup of Server and Empty Database
-I already ahd a microsoft acccount and had to activate my Azure account. Once the Azure account was created I the SQL Server with an Empty Database and then created a new ```Web App + SQL``` server.
+I already had a Microsoft account and had to activate my Azure account. Once the Azure account was created I the SQL Server with an Empty Database and then created a new ```Web App + SQL``` server.
 
 ![step 1](img/01.png)
 
