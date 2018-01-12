@@ -12,7 +12,7 @@ for the Software Engineering series (CS460, CS461, CS462).
 I am a Computer Science student at [Western Oregon University](https://www.wou.edu).
 
 ### Code Repository
-All of the code seen here is for CS460 and is hosted in the following repository: [https://bitbucket.org/devonsmith7696/cs460-project-repository](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+All of the code seen here is for CS460 and is hosted in the following repository: [https://bitbucket.org/devonsmith/cs460-project-repository](https://bitbucket.org/devonsmith/cs460-project-repository)
 
 ### Software Engineering I (CS 460): Homework
 
