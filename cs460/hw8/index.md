@@ -7,7 +7,7 @@ layout: default
 This homework assignment is about learning how to create a web application that uses a relational database we created and AJAX. We will use C# 7.0, MVC 5,and JavaScript to create a web application that uses AJAX to show some information to the user. We need to provide dynamically generated buttons for each Genre in that when clicked will get a JsonResult from our web application which will contain all the artwork in the database that is in that genre.
 
 * The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW8.html).
-* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith/cs460-project-repository)
 * ~~Live Demo on Microsoft Azure~~ *No longer available*
 
 Note for this log I decided to write the log as a series of requirements instead of a sequence of steps. This should make the journal easier to read and find the content that matches the project requirements.

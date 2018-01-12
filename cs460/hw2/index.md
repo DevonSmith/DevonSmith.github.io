@@ -8,8 +8,8 @@ This homework assignment was about learning the basics of JavaScript application
 
 * You can find a description of this project [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW2.html)
 * Demo located [here](https://devonsmith.github.io/cs460/hw2/demo)
-* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
-* https://bitbucket.org/devonsmith7696/cs460-project-repository.git
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith/cs460-project-repository)
+* https://bitbucket.org/devonsmith/cs460-project-repository.git
 
 ### Step 1: Setup the environment
 

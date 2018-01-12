@@ -7,7 +7,7 @@ layout: default
 This homework assignment is about learning how to publish a web application that uses a relational database we created and AJAX to a hosting provider. We will use Microsoft Azure for the hosting of this web app and its database. For the web app we will be using the Homework 8 Project.
 
 * The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW9.html).
-* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith/cs460-project-repository)
 * ~~Deployed Website on Microsoft Azure~~ *No longer available*
 
 ### Step 1: Initial Setup of Server and Empty Database

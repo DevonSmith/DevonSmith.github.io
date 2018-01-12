@@ -7,7 +7,7 @@ layout: default
 This homework assignment is about learning how to use a REST API to create an application. We will use C# 7.0, MVC 5,and JavaScript to create a web application that uses the Giphy web API to search Giphy to find animated gif images. In addition to using the API we need to do some server-side processing based on user interaction. We will also need to create some user interaction that is processed client-side.
 
 * The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW7.html).
-* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith/cs460-project-repository)
 * Live Demo Unavialable
 
 Note for this log I decided to write the log as a series of requirements instead of a sequence of steps. This should make the journal easier to read and find the content that matches the project requirements.

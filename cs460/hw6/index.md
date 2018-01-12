@@ -7,7 +7,7 @@ layout: default
 This homework assignment is about learning to work with a relational database using C# and the Entity Framework. We will use git to upload our content to the our project repository. We will create a simple store website using the AdventureWorks2014 database.
 
 * The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW6.html).
-* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith/cs460-project-repository)
 * Live Demo Unavialable
 
 ### Step 1:

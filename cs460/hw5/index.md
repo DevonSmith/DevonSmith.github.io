@@ -8,8 +8,8 @@ This homework assignment was about creating a .NET MVC application that uses a s
 
 * You can find a description of this project [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW5.html)
 * Demo *unavailable*
-* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
-* https://bitbucket.org/devonsmith7696/cs460-project-repository.git
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith/cs460-project-repository)
+* https://bitbucket.org/devonsmith/cs460-project-repository.git
 
 ### Step 1: Creation of an Empty MVC Project
 

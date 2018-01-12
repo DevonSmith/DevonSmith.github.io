@@ -7,7 +7,7 @@ layout: default
 This homework assignment is about learning the basics of HTML and CSS. We will use git to upload our content to the our project repository. Rather than create our own framework, we will use Boostrap, a popular CSS and Javascript framework can be used to create websites quickly and easily. However, it is a rather large framework at 240KB. 
 
 * The assignment page can be found [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW1.html).
-* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith/cs460-project-repository)
 * Demo located [here](https://devonsmith.github.io/cs460/hw1/demo).
 * https://bitbucket.org/devonsmith7696/cs460-project-repository.git
 
@@ -25,7 +25,7 @@ cd CS460
 git init
 git confic --global user.name "DevonSmith"
 git config --global user.email "email@place.com"
-git remote add origin https://devonsmith7696@bitbucket.org/devonsmith7696/cs460-project-repository.git
+git remote add origin https://devonsmith7696@bitbucket.org/devonsmith/cs460-project-repository.git
 echo "This is the repo for CS460" >> README.md
 git add README.md
 git commit -m "Initial commit."

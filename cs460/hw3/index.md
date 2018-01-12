@@ -6,9 +6,9 @@ layout: default
 For this project I will be creating a C# implementation of a previously written Java application. The goal of this project is to write a simple example C# application that will demonstrate my knowledge and understanding of the C# language and development tools. It will also give me an opportunity to refamiliarize myself with C# and Visual Studio so that I'm ready to work on the ASP.NET MVC applications in our next set of assignments.
 
 * You can find a description of this assignment [here](http://www.wou.edu/~morses/classes/cs46x/assignments/HW3.html).
-* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith7696/cs460-project-repository)
-* Download the binary [here](https://bitbucket.org/devonsmith7696/cs460-project-repository/downloads/Postfix%20Calculator.exe)
-* https://bitbucket.org/devonsmith7696/cs460-project-repository.git
+* The repository that contains this code can be found [here](https://bitbucket.org/devonsmith/cs460-project-repository)
+* Download the binary [here](https://bitbucket.org/devonsmith/cs460-project-repository/downloads/Postfix%20Calculator.exe)
+* https://bitbucket.org/devonsmith/cs460-project-repository.git
 
 
 ### Step 1: Environment Setup
